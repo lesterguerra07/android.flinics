@@ -16,29 +16,122 @@
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
 
     </string>
+
+    <!-- Strings related to main activity -->
     <string name="h_rectification">Rectificar Historial</string>
     <string name="rectify">Rectificar</string>
     <string name="patient_list">Lista de Pacientes</string>
     <string name="view">Ver</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_wizard">WizardActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="title_activity_wizard">Asistente</string>
 
-    <!-- Strings related to wizzard tabs -->
+    <!-- Strings related to wizard tabs -->
     <string name="tab_general_info">Datos Generales</string>
-    <string name="tab_reason_consulation">Motivos de la Consulta</string>
+    <string name="tab_consultation_reason">Motivos de la Consulta</string>
     <string name="tab_history_current_disease">Historial de la Enfermedad Actual</string>
     <string name="tab_pathological_history">Antecedenctes Patológicos</string>
+    <string name="tab_no_pathological_history">Antecedenctes no Patológicos</string>
     <string name="tab_systems_review">Revisión por Sistemas</string>
     <string name="tab_social_profile">Perfil Social</string>
     <string name="tab_anthropometric_measures">Medidas Antropométricas</string>
     <string name="tab_vital_signs">Signos Vitales</string>
     <string name="tab_general_inspection">Inspección General</string>
-    <string name="tab_no_pathological_history">Antecedenctes no Patológicos</string>
     <string name="tab_organ_evaluation">Evaluación de Órganos o Áreas Anatómicas</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings related to wizard fields -->
+    <!-- General info -->
+    <string name="patient_name">Nombre del Paciente</string>
+    <string name="gender">Género</string>
+    <string name="birthdate">Fecha de Nacimiento</string>
+    <string name="civil_status">Estado Civil</string>
+    <string name="religion">Religión</string>
+    <string name="origin">Procedencia</string>
+    <string name="home">Residencia</string>
+    <string name="profession">Profesión</string>
+    <string name="occupation">Ocupación</string>
+    <string name="race">Raza</string>
+    <string name="ethnicity">Étnia</string>
+    <string name="scholarship">Escolaridad</string>
+    <string name="alphabet">Alfabeta</string>
+    <string name="phone">Teléfono</string>
+    <string name="informant_name">Nombre del Informante</string>
+    <!-- Consultation reason -->
+    <string name="consultation_reason_hint">
+        Se debe describir la molestia principal que obliga al paciente a consultar y su tiempo de evolución. Debe colocar la molestia principal o más relevante, en el caso de que se presenten varias. Además, debe redactarse con las palabras del paciente. Mientras que el tiempo de evolución es el tiempo transcurrido desde el inicio de la molestia hasta el día que consulto con el primer facultativo. Si la molestia es la agudización de una enfermedad crónica, se debe colocar desde cuando se agudizo la enfermedad y no el inicio de ésta.
+    </string>
+    <!-- Consultation reason -->
+    <string name="history_current_disease_hint">
+        Se debe describir la evolución y características del malestar por el que se consulta. Se debe colocar la información de manera cronológica. Se deben colocar los síntomas y signos asociados y su respectiva descripción. También se debe colocar si el paciente consulto previamente con algún otro facultativo o si tomo algún tipo de medicación.
+    </string>
+    <!-- Pathological history -->
+    <string name="familiars">Familiares</string>
+    <string name="medicals">Médicos</string>
+    <string name="surgicals">Quirúrgicos</string>
+    <string name="traumatics">Traumaticos</string>
+    <string name="allergics">Alérgicos</string>
+    <string name="gineco_obstetrics">Gineco-Obstétricos</string>
+    <string name="vices_and_manias">Vicios y Manías</string>
+    <!-- No pathological history -->
+    <string name="prenatal_period">Período Prenatal</string>
+    <string name="natal_period">Período Natal</string>
+    <string name="postnatal_period">Período </string>
+    <string name="development">Desarrollo</string>
+    <string name="immunizations">Inmunizaciones</string>
+    <string name="nutrition">Alimentación</string>
+    <string name="habits">Hábitos</string>
+    <string name="menarquia">Menarquía</string>
+    <string name="menstrual_cycle">Ciclo Menstrual</string>
+    <string name="last_menstruation">Última Menstruación</string>
+    <string name="contraceptive_methods">Métodos Anticonceptivos</string>
+    <string name="gestations">Gestaciones</string>
+    <string name="parturitions">Partos</string>
+    <string name="living_children">Hijos Vivos</string>
+    <!-- Systems review -->
+    <string name="conduct">Conducta</string>
+    <string name="skin_and_faneras">Piel y Faneras</string>
+    <string name="head">Cabeza</string>
+    <string name="eyes">Ojos</string>
+    <string name="ears">Oídos</string>
+    <string name="nose">Nariz</string>
+    <string name="mouth">Boca</string>
+    <string name="throat">Garganta</string>
+    <string name="neck">Cuello</string>
+    <string name="mammary_land">Mamas</string>
+    <string name="lymphatic_system">Sistema Linfático</string>
+    <string name="respiratory_system">Sistema Respiratorio</string>
+    <string name="ardiovascular_system">Sistema Cardiovascular</string>
+    <string name="digestive_system">Sistema Digestivo</string>
+    <string name="genotourinary_system">Sistema Genitourinario</string>
+    <string name="endocrine_system">Sistema Endócrino</string>
+    <string name="skeletal_muscle_system">Sistema Músculo Esquelético</string>
+    <string name="nervous_system">Sistema Nervioso</string>
+    <!-- Social profile-->
+    <string name="social_profile_hint">
+        Se debe indagar sobre el tipo de vivienda, acceso de servicios básicos, tipo de construcción, cantidad de personas que viven en la vivienda, relación familiar, ingreso económico, tendencia sexual y tenencia o convivencia de mascotas.
+    </string>
+    <!-- Anthropometric measures-->
+    <string name="weight">Peso</string>
+    <string name="size">Talla</string>
+    <string name="cephalic_circumference">Circunferencia Cefálica</string>
+    <string name="body_mass_index">Índice de Masa Corporal</string>
+    <!--Vital signs-->
+    <string name="temperature">Temperatura</string>
+    <string name="blood_pressure">o	Presión Arterial</string>
+    <string name="breathing_frequency">Frecuencia Respiratoria</string>
+    <string name="heart_rate">Frecuencia Cardiaca</string>
+    <string name="pulse">Pulso</string>
+    <!--General Inspection-->
+    <string name="general_inspection_hint">
+        Se debe describir el nivel de consciencia, estado general, facies, actitud o postura, movimientos involuntarios, marcha, higiene personal, olores corporales, dispositivos, discurso, etc.
+    </string>
+    <!--Organ Evaluations-->
+    <string name="oropharynx">Orofaringe</string>
+    <string name="chest">Tórax</string>
+    <string name="abdomen">Abdomen</string>
+    <string name="lumbar_region">Región Lumbar</string>
+    <string name="extremities">Extremidades</string>
+    <string name="neurological">Neurológico</string>
+
+
 
 </resources>
