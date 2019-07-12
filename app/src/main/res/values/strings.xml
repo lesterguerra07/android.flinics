@@ -72,9 +72,9 @@
     <string name="gineco_obstetrics">Gineco-Obstétricos</string>
     <string name="vices_and_manias">Vicios y Manías</string>
     <!-- No pathological history -->
-    <string name="prenatal_period">Período Prenatal</string>
+    <string name="prenatal_period">Período Pre-Natal</string>
     <string name="natal_period">Período Natal</string>
-    <string name="postnatal_period">Período </string>
+    <string name="postnatal_period">Período Post-Natal </string>
     <string name="development">Desarrollo</string>
     <string name="immunizations">Inmunizaciones</string>
     <string name="nutrition">Alimentación</string>
@@ -99,7 +99,7 @@
     <string name="mammary_land">Mamas</string>
     <string name="lymphatic_system">Sistema Linfático</string>
     <string name="respiratory_system">Sistema Respiratorio</string>
-    <string name="ardiovascular_system">Sistema Cardiovascular</string>
+    <string name="cardiovascular_system">Sistema Cardiovascular</string>
     <string name="digestive_system">Sistema Digestivo</string>
     <string name="genotourinary_system">Sistema Genitourinario</string>
     <string name="endocrine_system">Sistema Endócrino</string>
@@ -132,6 +132,24 @@
     <string name="extremities">Extremidades</string>
     <string name="neurological">Neurológico</string>
 
+    <!--Option Text-->
+    <string name="female">Femenino</string>
+    <string name="male">Masculino</string>
+    <string name="single">Soltero(a)</string>
+    <string name="married">Casado(a)</string>
+    <string name="lawful_union">Unión de Hecho</string>
+    <string name="white_race">Blanca</string>
+    <string name="black_race">Negra</string>
+    <string name="yellow_race">Amarilla</string>
+    <string name="cooper_race">Cobriza</string>
+    <string name="none">Ninguna</string>
+    <string name="literate">Alfabeta</string>
+    <string name="illiterate">Analfabeta</string>
+    <string name="native_ethnicity">Indígena</string>
+    <string name="no_native_ethnicity">No Indígena</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

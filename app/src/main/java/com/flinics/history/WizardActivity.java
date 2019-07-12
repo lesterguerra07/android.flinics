@@ -24,9 +24,18 @@ public class WizardActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.mic_fab);
+        FloatingActionButton fab_mic = findViewById(R.id.mic_fab);
+        FloatingActionButton fab_done = findViewById(R.id.done_fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab_mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        fab_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
