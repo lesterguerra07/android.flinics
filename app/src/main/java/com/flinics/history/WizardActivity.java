@@ -15,17 +15,21 @@ import com.flinics.history.ui.main.SectionsPagerAdapter;
 
 public class WizardActivity extends AppCompatActivity {
 
+    FloatingActionButton fab_mic;
+    FloatingActionButton fab_done;
+    ViewPager viewPager;
+    SectionsPagerAdapter sectionsPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wizard);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab_mic = findViewById(R.id.mic_fab);
-        FloatingActionButton fab_done = findViewById(R.id.done_fab);
+        fab_mic = findViewById(R.id.mic_fab);
+        fab_done = findViewById(R.id.done_fab);
 
         fab_mic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,5 +46,26 @@ public class WizardActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == sectionsPagerAdapter.getCount() - 1)
+                    fab_done.show();
+                else
+                    fab_done.hide();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
     }
 }

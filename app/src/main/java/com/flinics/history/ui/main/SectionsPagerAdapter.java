@@ -18,7 +18,7 @@ import com.flinics.history.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{
+    private static final int[] _tab_titles = new int[]{
             R.string.tab_general_info
             , R.string.tab_consultation_reason
             , R.string.tab_history_current_disease
@@ -41,7 +41,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position){
             case 0:
                 return GeneralInfoFragment.newInstance(null);
@@ -64,22 +63,20 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 9:
                 return GeneralInspectionFragment.newInstance("", "");
             case 10:
-                return CurrentDiseaseHistoryFragment.newInstance("", "");
+                return OrganEvaluationFragment.newInstance("", "");
             default:
-                break;
+                return GeneralInfoFragment.newInstance(null);
         }
-        return GeneralInfoFragment.newInstance(null);
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
+        return mContext.getResources().getString(_tab_titles[position]);
     }
 
     @Override
     public int getCount() {
-        // Show 11 total pages.
-        return 11;
+        return _tab_titles.length;
     }
 }
