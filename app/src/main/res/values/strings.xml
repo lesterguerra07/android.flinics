@@ -116,10 +116,12 @@
     <string name="body_mass_index">Índice de Masa Corporal</string>
     <!--Vital signs-->
     <string name="temperature">Temperatura</string>
-    <string name="blood_pressure">o	Presión Arterial</string>
+    <string name="blood_pressure">Presión Arterial</string>
+    <string name="blood_pressure_left">Presión Arterial Brazo Izquierdo</string>
+    <string name="blood_pressure_right">Presión Arterial Brazo Derecho</string>
     <string name="breathing_frequency">Frecuencia Respiratoria</string>
     <string name="heart_rate">Frecuencia Cardiaca</string>
-    <string name="pulse">Pulso</string>
+    <string name="pulse_rate">Frecuencia Pulso</string>
     <!--General Inspection-->
     <string name="general_inspection_hint">
         Se debe describir el nivel de consciencia, estado general, facies, actitud o postura, movimientos involuntarios, marcha, higiene personal, olores corporales, dispositivos, discurso, etc.
@@ -147,6 +149,16 @@
     <string name="illiterate">Analfabeta</string>
     <string name="native_ethnicity">Indígena</string>
     <string name="no_native_ethnicity">No Indígena</string>
+    <string name="cm">cm</string>
+    <string name="centimeter">centimetros</string>
+    <string name="m">m</string>
+    <string name="meter">metros</string>
+    <string name="lb">lb</string>
+    <string name="pound">libras</string>
+    <string name="kg">kg</string>
+    <string name="kilogram">kilogramos</string>
+    <string name="BMI">IMC</string>
+    <string name="unit_BMI">kg/m²</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.PathologicalHistoryFragment">
+    tools:context=".ui.fragment.VitalSignsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,193 +15,178 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/familiars_TView"
+                android:id="@+id/temperature_TView"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/familiars"
+                android:text="@string/temperature"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/familiars_EText"
+                android:id="@+id/temperature_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/familiars"
-                android:inputType="textMultiLine"
-                android:minLines="5"
+                android:hint="@string/temperature"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.549"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/familiars_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/temperature_TView" />
 
             <TextView
-                android:id="@+id/medicals_TView"
+                android:id="@+id/bloodPressureLeft_TView"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/medicals"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/familiars_EText" />
-
-            <EditText
-                android:id="@+id/medicals_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/medicals"
-                android:inputType="textMultiLine"
-                android:minLines="5"
+                android:text="@string/blood_pressure_left"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicals_TView" />
-
-            <TextView
-                android:id="@+id/traumatics_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/traumatics"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicals_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/temperature_EText" />
 
             <EditText
-                android:id="@+id/traumatics_EText"
+                android:id="@+id/bloodPressureLeft_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/traumatics"
-                android:inputType="textMultiLine"
-                android:lines="5"
+                android:hint="@string/blood_pressure_left"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodPressureLeft_TView" />
+
+            <TextView
+                android:id="@+id/bloodPressureRight_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/blood_pressure_right"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/traumatics_TView" />
-
-            <TextView
-                android:id="@+id/allergics_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/allergics"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/traumatics_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/bloodPressureLeft_EText" />
 
             <EditText
-                android:id="@+id/allergics_EText"
+                android:id="@+id/bloodPressureRight_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/allergics"
-                android:inputType="textMultiLine"
-                android:lines="5"
+                android:hint="@string/blood_pressure_right"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/allergics_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/bloodPressureRight_TView" />
 
             <TextView
-                android:id="@+id/ginecoObstetrics_TView"
+                android:id="@+id/heartRate_TView"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/gineco_obstetrics"
+                android:text="@string/heart_rate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/allergics_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/bloodPressureRight_EText" />
 
             <EditText
-                android:id="@+id/ginecoObstetrics_EText"
+                android:id="@+id/heartRate_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/gineco_obstetrics"
-                android:inputType="textMultiLine"
-                android:lines="5"
+                android:hint="@string/heart_rate"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ginecoObstetrics_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/heartRate_TView" />
 
             <TextView
-                android:id="@+id/viceAndManias_TView"
+                android:id="@+id/pulseRateTView"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/vices_and_manias"
+                android:text="@string/pulse_rate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ginecoObstetrics_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/heartRate_EText" />
 
             <EditText
-                android:id="@+id/viceAndManias_EText"
+                android:id="@+id/pulseRate_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
                 android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/vices_and_manias"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:hint="@string/pulse_rate"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viceAndManias_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/pulseRateTView" />
+
+            <TextView
+                android:id="@+id/breathingFrequency_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/breathing_frequency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pulseRate_EText" />
+
+            <EditText
+                android:id="@+id/breathingFrequency_EText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="@string/breathing_frequency"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/breathingFrequency_TView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </FrameLayout>

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.CurrentDiseaseHistoryFragment">
+    tools:context=".ui.fragment.SocialProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/currentDiseaseHistory_EText"
+            android:id="@+id/editText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -20,14 +20,14 @@
             android:layout_marginBottom="32dp"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="@string/history_current_disease_hint"
+            android:hint="@string/social_profile_hint"
             android:inputType="textMultiLine"
             android:minLines="20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.009" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

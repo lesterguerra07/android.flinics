@@ -1,4 +1,4 @@
-package com.flinics.history;
+package com.flinics.history.ui.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,16 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.flinics.history.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReasonConsultationFragment.OnFragmentInteractionListener} interface
+ * {@link NoPathologicalHistoryFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ReasonConsultationFragment#newInstance} factory method to
+ * Use the {@link NoPathologicalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReasonConsultationFragment extends Fragment {
+public class NoPathologicalHistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +33,7 @@ public class ReasonConsultationFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReasonConsultationFragment() {
+    public NoPathologicalHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +43,11 @@ public class ReasonConsultationFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReasonConsultationFragment.
+     * @return A new instance of fragment NoPathologicalHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReasonConsultationFragment newInstance(String param1, String param2) {
-        ReasonConsultationFragment fragment = new ReasonConsultationFragment();
+    public static NoPathologicalHistoryFragment newInstance(String param1, String param2) {
+        NoPathologicalHistoryFragment fragment = new NoPathologicalHistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +68,7 @@ public class ReasonConsultationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultation_reason, container, false);
+        return inflater.inflate(R.layout.fragment_no_pathological_history, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,12 +81,6 @@ public class ReasonConsultationFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override

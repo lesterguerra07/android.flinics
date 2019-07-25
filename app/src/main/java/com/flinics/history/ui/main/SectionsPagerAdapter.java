@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.flinics.history.ui.fragment.*;
 import com.flinics.history.R;
 
 /**
@@ -22,12 +23,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             , R.string.tab_consultation_reason
             , R.string.tab_history_current_disease
             , R.string.tab_pathological_history
+            , R.string.tab_no_pathological_history
             , R.string.tab_systems_review
             , R.string.tab_social_profile
             , R.string.tab_anthropometric_measures
             , R.string.tab_vital_signs
             , R.string.tab_general_inspection
-            , R.string.tab_no_pathological_history
             , R.string.tab_organ_evaluation
     };
     private final Context mContext;
@@ -41,7 +42,33 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        switch (position){
+            case 0:
+                return GeneralInfoFragment.newInstance(null);
+            case 1:
+                return ReasonConsultationFragment.newInstance("", "");
+            case 2:
+                return CurrentDiseaseHistoryFragment.newInstance("", "");
+            case 3:
+                return PathologicalHistoryFragment.newInstance("", "");
+            case 4:
+                return NoPathologicalHistoryFragment.newInstance("", "");
+            case 5:
+                return SystemsReviewFragment.newInstance("", "");
+            case 6:
+                return SocialProfileFragment.newInstance("", "");
+            case 7:
+                return AnthropometricMeasuresFragment.newInstance("", "");
+            case 8:
+                return VitalSignsFragment.newInstance("", "");
+            case 9:
+                return GeneralInspectionFragment.newInstance("", "");
+            case 10:
+                return CurrentDiseaseHistoryFragment.newInstance("", "");
+            default:
+                break;
+        }
+        return GeneralInfoFragment.newInstance(null);
     }
 
     @Nullable

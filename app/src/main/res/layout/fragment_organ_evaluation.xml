@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.SystemsReviewFragment">
+    tools:context=".ui.fragment.OrganEvaluationFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,36 +15,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/conduct_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/conduct"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/conduct_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/conduct"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/conduct_TView" />
-
-            <TextView
-                android:id="@+id/skinAndFaneras_TView"
+                android:id="@+id/TextView1"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,10 +25,10 @@
                 android:text="@string/skin_and_faneras"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/conduct_EText" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/skinAndFaneras_EText"
+                android:id="@+id/EditText1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -67,26 +38,27 @@
                 android:gravity="start|top"
                 android:hint="@string/skin_and_faneras"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skinAndFaneras_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView1" />
 
             <TextView
-                android:id="@+id/head_TView"
+                android:id="@+id/TextView2"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/head"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skinAndFaneras_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/EditText1" />
 
             <EditText
-                android:id="@+id/head_EText"
+                android:id="@+id/editText2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -96,26 +68,27 @@
                 android:gravity="start|top"
                 android:hint="@string/head"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/head_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView2" />
 
             <TextView
-                android:id="@+id/eyes_TView"
+                android:id="@+id/TextView3"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/eyes"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/head_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
             <EditText
-                android:id="@+id/eyes_EText"
+                android:id="@+id/editText3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -125,26 +98,57 @@
                 android:gravity="start|top"
                 android:hint="@string/eyes"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eyes_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView3" />
 
             <TextView
-                android:id="@+id/nose_TView"
+                android:id="@+id/TextView4"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ears"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/ears"
+                android:inputType="textMultiLine"
+                android:minLines="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextView4" />
+
+            <TextView
+                android:id="@+id/TextView5"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/nose"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eyes_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
             <EditText
-                android:id="@+id/nose_EText"
+                android:id="@+id/editText5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -154,26 +158,27 @@
                 android:gravity="start|top"
                 android:hint="@string/nose"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nose_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView5" />
 
             <TextView
-                android:id="@+id/mouth_TView"
+                android:id="@+id/TextView6"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/mouth"
+                android:text="@string/oropharynx"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nose_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText5" />
 
             <EditText
-                android:id="@+id/mouth_EText"
+                android:id="@+id/editText6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -181,57 +186,29 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/mouth"
+                android:hint="@string/oropharynx"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mouth_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView6" />
 
             <TextView
-                android:id="@+id/throat_TView"
+                android:id="@+id/TextView7"
                 style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/throat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mouth_EText" />
-
-            <EditText
-                android:id="@+id/throat_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/throat"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/throat_TView" />
-
-            <TextView
-                android:id="@+id/neck_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/neck"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/throat_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
             <EditText
-                android:id="@+id/neck_EText"
+                android:id="@+id/editText7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -241,26 +218,27 @@
                 android:gravity="start|top"
                 android:hint="@string/neck"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/neck_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView7" />
 
             <TextView
-                android:id="@+id/mammaryLand_TView"
+                android:id="@+id/TextView8"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/mammary_land"
+                android:text="@string/chest"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/neck_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
             <EditText
-                android:id="@+id/mammaryLand_EText"
+                android:id="@+id/editText8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -268,28 +246,29 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/mammary_land"
+                android:hint="@string/chest"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mammaryLand_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView8" />
 
             <TextView
-                android:id="@+id/lymphaticSystem_TextView"
+                android:id="@+id/TextView9"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/lymphatic_system"
+                android:text="@string/abdomen"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mammaryLand_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText8" />
 
             <EditText
-                android:id="@+id/lymphaticSystem_EText"
+                android:id="@+id/editText9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -297,28 +276,29 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/lymphatic_system"
+                android:hint="@string/abdomen"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lymphaticSystem_TextView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView9" />
 
             <TextView
-                android:id="@+id/respiratorySystemTView"
+                android:id="@+id/TextView10"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/respiratory_system"
+                android:text="@string/lumbar_region"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lymphaticSystem_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
             <EditText
-                android:id="@+id/respiratorySystem_EText"
+                android:id="@+id/editText10"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -326,28 +306,29 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/respiratory_system"
+                android:hint="@string/lumbar_region"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/respiratorySystemTView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView10" />
 
             <TextView
-                android:id="@+id/cardiovascularSystem_TView"
+                android:id="@+id/TextView11"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/cardiovascular_system"
+                android:text="@string/extremities"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/respiratorySystem_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText10" />
 
             <EditText
-                android:id="@+id/cardiovascularSystem_EText"
+                android:id="@+id/editText11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -355,28 +336,29 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/cardiovascular_system"
+                android:hint="@string/extremities"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardiovascularSystem_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView11" />
 
             <TextView
-                android:id="@+id/digestiveSystem_TView"
+                android:id="@+id/TextView12"
                 style="@style/InfoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/digestive_system"
+                android:text="@string/neurological"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardiovascularSystem_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText11" />
 
             <EditText
-                android:id="@+id/digestiveSystem_EText"
+                android:id="@+id/editText12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -384,131 +366,14 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/digestive_system"
+                android:hint="@string/neurological"
                 android:inputType="textMultiLine"
-                android:minLines="5"
+                android:minLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/digestiveSystem_TView" />
-
-            <TextView
-                android:id="@+id/genotourinarySystem_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/genotourinary_system"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/digestiveSystem_EText" />
-
-            <EditText
-                android:id="@+id/genotourinarySystem_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/genotourinary_system"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/genotourinarySystem_TView" />
-
-            <TextView
-                android:id="@+id/endocrineSystem_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/endocrine_system"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/genotourinarySystem_EText" />
-
-            <EditText
-                android:id="@+id/endocrineSystem_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/endocrine_system"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/endocrineSystem_TView" />
-
-            <TextView
-                android:id="@+id/skeletalMuscleSystem_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/skeletal_muscle_system"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/endocrineSystem_EText" />
-
-            <EditText
-                android:id="@+id/skeletalMuscleSystem_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/skeletal_muscle_system"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skeletalMuscleSystem_TView" />
-
-            <TextView
-                android:id="@+id/nervousSystem_TView"
-                style="@style/InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/nervous_system"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skeletalMuscleSystem_EText" />
-
-            <EditText
-                android:id="@+id/nervousSystem_EText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/nervous_system"
-                android:inputType="textMultiLine"
-                android:minLines="5"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nervousSystem_TView" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView12" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </FrameLayout>
