@@ -15,13 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/patientName_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/patient_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/patientName_EText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:hint="@string/patient_name"
@@ -29,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/patientName_TView" />
 
 
             <ToggleButton
@@ -49,6 +61,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/patientName_EText" />
 
+            <TextView
+                android:id="@+id/birthdate_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/birthdate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gender_TButton" />
+
+            <Button
+                android:id="@+id/birthdate_Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/transparent_bg_bordered_button"
+                android:ems="10"
+                android:text="@string/choose_date"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/birthdate_TView" />
+
             <EditText
                 android:id="@+id/birthdate_EText"
                 android:layout_width="0dp"
@@ -59,9 +100,10 @@
                 android:ems="10"
                 android:hint="@string/birthdate"
                 android:inputType="date"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gender_TButton" />
+                app:layout_constraintTop_toBottomOf="@+id/birthdate_Button" />
 
             <RadioGroup
                 android:id="@+id/civilStatus_RGroup"
@@ -97,6 +139,19 @@
                     android:text="@string/lawful_union" />
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/religion_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/religion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/civilStatus_RGroup" />
+
             <EditText
                 android:id="@+id/religion_EText"
                 android:layout_width="0dp"
@@ -109,7 +164,20 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/civilStatus_RGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/religion_TView" />
+
+            <TextView
+                android:id="@+id/origin_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/origin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/religion_EText" />
 
             <EditText
                 android:id="@+id/origin_EText"
@@ -125,7 +193,20 @@
                 android:minLines="3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/religion_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/origin_TView" />
+
+            <TextView
+                android:id="@+id/home_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/origin_EText" />
 
             <EditText
                 android:id="@+id/home_EText"
@@ -142,7 +223,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/origin_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/home_TView" />
+
+            <TextView
+                android:id="@+id/profession_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/profession"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_EText" />
 
             <EditText
                 android:id="@+id/profession_EText"
@@ -159,7 +253,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/profession_TView" />
+
+            <TextView
+                android:id="@+id/occupation_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/occupation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profession_EText" />
 
             <EditText
                 android:id="@+id/occupation_EText"
@@ -176,7 +283,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profession_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/occupation_TView" />
 
             <TextView
                 android:id="@+id/race_TView"
@@ -281,7 +388,18 @@
                     android:text="@string/no_native_ethnicity" />
             </RadioGroup>
 
-
+            <TextView
+                android:id="@+id/scholarship_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/scholarship"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ethnicity_RGroup" />
 
             <EditText
                 android:id="@+id/scholarship_EText"
@@ -297,7 +415,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ethnicity_RGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/scholarship_TView" />
 
             <ToggleButton
                 android:id="@+id/literate_TButton"
@@ -316,6 +434,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scholarship_EText" />
 
+            <TextView
+                android:id="@+id/phone_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/literate_TButton" />
+
             <EditText
                 android:id="@+id/phone_EText"
                 android:layout_width="0dp"
@@ -329,7 +460,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/literate_TButton" />
+                app:layout_constraintTop_toBottomOf="@+id/phone_TView" />
+
+            <TextView
+                android:id="@+id/informantName_TView"
+                style="@style/InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/informant_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_EText" />
 
             <EditText
                 android:id="@+id/informantName_EText"
@@ -346,7 +490,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone_EText" />
+                app:layout_constraintTop_toBottomOf="@+id/informantName_TView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

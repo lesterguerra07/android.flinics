@@ -159,6 +159,7 @@
     <string name="kilogram">kilogramos</string>
     <string name="BMI">IMC</string>
     <string name="unit_BMI">kg/m²</string>
+    <string name="choose_date">Elegir Fecha</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
