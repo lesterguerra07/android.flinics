@@ -88,7 +88,7 @@ public class WizardActivity extends AppCompatActivity {
             Log.d("WizardActivity", entry.getKey() + ": " + entry.getValue());
         }
 
-        Volley.postData(this, data, successListener, errorListener);
+        Volley.postData(this, data, successListener, errorListener, null, null, null);
     }
 
     private Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
