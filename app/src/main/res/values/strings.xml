@@ -25,6 +25,9 @@
     <string name="action_settings">Ajustes</string>
     <string name="title_activity_wizard">Asistente</string>
 
+    <!-- Strings related to patients tabs -->
+    <string name="title_activity_patients">Pacientes</string>
+
     <!-- Strings related to wizard tabs -->
     <string name="tab_general_info">Datos Generales</string>
     <string name="tab_consultation_reason">Motivos de la Consulta</string>
@@ -160,6 +163,7 @@
     <string name="BMI">IMC</string>
     <string name="unit_BMI">kg/m²</string>
     <string name="choose_date">Elegir Fecha</string>
+    <string name="date_format">%1$s/%2$s/%3$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

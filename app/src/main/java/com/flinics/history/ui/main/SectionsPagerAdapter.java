@@ -8,8 +8,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.flinics.history.ui.fragment.*;
 import com.flinics.history.R;
+import com.flinics.history.ui.fragment.AnthropometricMeasuresFragment;
+import com.flinics.history.ui.fragment.CurrentDiseaseHistoryFragment;
+import com.flinics.history.ui.fragment.GeneralInfoFragment;
+import com.flinics.history.ui.fragment.GeneralInspectionFragment;
+import com.flinics.history.ui.fragment.NoPathologicalHistoryFragment;
+import com.flinics.history.ui.fragment.OrganEvaluationFragment;
+import com.flinics.history.ui.fragment.PathologicalHistoryFragment;
+import com.flinics.history.ui.fragment.ReasonConsultationFragment;
+import com.flinics.history.ui.fragment.SocialProfileFragment;
+import com.flinics.history.ui.fragment.SystemsReviewFragment;
+import com.flinics.history.ui.fragment.VitalSignsFragment;
+
+import java.util.HashMap;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -32,10 +44,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             , R.string.tab_organ_evaluation
     };
     private final Context mContext;
+    private HashMap<String, String> data;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, HashMap<String, String> data) {
         super(fm);
         mContext = context;
+        this.data = data;
     }
 
     @Override
@@ -43,29 +57,29 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         switch (position){
             case 0:
-                return GeneralInfoFragment.newInstance(null);
+                return GeneralInfoFragment.newInstance(data, null);
             case 1:
-                return ReasonConsultationFragment.newInstance("", "");
+                return ReasonConsultationFragment.newInstance(data, "", "");
             case 2:
-                return CurrentDiseaseHistoryFragment.newInstance("", "");
+                return CurrentDiseaseHistoryFragment.newInstance(data, "", "");
             case 3:
-                return PathologicalHistoryFragment.newInstance("", "");
+                return PathologicalHistoryFragment.newInstance(data, "", "");
             case 4:
-                return NoPathologicalHistoryFragment.newInstance("", "");
+                return NoPathologicalHistoryFragment.newInstance(data, "", "");
             case 5:
-                return SystemsReviewFragment.newInstance("", "");
+                return SystemsReviewFragment.newInstance(data, "", "");
             case 6:
-                return SocialProfileFragment.newInstance("", "");
+                return SocialProfileFragment.newInstance(data, "", "");
             case 7:
-                return AnthropometricMeasuresFragment.newInstance("", "");
+                return AnthropometricMeasuresFragment.newInstance(data, "", "");
             case 8:
-                return VitalSignsFragment.newInstance("", "");
+                return VitalSignsFragment.newInstance(data, "", "");
             case 9:
-                return GeneralInspectionFragment.newInstance("", "");
+                return GeneralInspectionFragment.newInstance(data, "", "");
             case 10:
-                return OrganEvaluationFragment.newInstance("", "");
+                return OrganEvaluationFragment.newInstance(data, "", "");
             default:
-                return GeneralInfoFragment.newInstance(null);
+                return GeneralInfoFragment.newInstance(data, null);
         }
     }
 
