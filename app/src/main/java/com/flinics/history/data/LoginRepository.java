@@ -1,6 +1,14 @@
 package com.flinics.history.data;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.flinics.history.data.model.LoggedInUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -43,12 +51,14 @@ public class LoginRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public Result<LoggedInUser> login(String username, String password, Context context) {
         // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
+        Result<LoggedInUser> result = dataSource.login(username, password, context);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
         }
         return result;
     }
+
+
 }

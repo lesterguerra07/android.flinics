@@ -5,6 +5,8 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,10 +27,6 @@ import android.widget.Toast;
 
 import com.flinics.history.MainActivity;
 import com.flinics.history.R;
-import com.flinics.history.ui.login.LoginViewModel;
-import com.flinics.history.ui.login.LoginViewModelFactory;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
+        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory(getApplication()))
                 .get(LoginViewModel.class);
 
         getSupportActionBar().hide();
@@ -126,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        String welcome = getString(R.string.welcome) + model.getDisplayName() + " " + model.getToken();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

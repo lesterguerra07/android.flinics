@@ -42,16 +42,16 @@
                 <TextView
                     android:id="@+id/rectification_subtitle_text"
                     android:layout_width="0dp"
-                    android:layout_height="75dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/large_text"
+                    android:text="@string/b_rectification"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rectification_title_text"
-                    tools:text="@string/large_text" />
+                    tools:text="@string/b_rectification" />
 
                 <Button
                     android:id="@+id/rectification_button"
@@ -97,16 +97,16 @@
                 <TextView
                     android:id="@+id/patient_subtitle_text"
                     android:layout_width="0dp"
-                    android:layout_height="75dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/large_text"
+                    android:text="@string/b_patient_list"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/patient_title_text"
-                    tools:text="@string/large_text" />
+                    tools:text="@string/b_patient_list" />
 
                 <Button
                     android:id="@+id/patient_button"

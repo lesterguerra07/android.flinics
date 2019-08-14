@@ -1,6 +1,15 @@
 package com.flinics.history.data;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.flinics.history.Volley;
 import com.flinics.history.data.model.LoggedInUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -9,15 +18,23 @@ import java.io.IOException;
  */
 public class LoginDataSource {
 
-    public Result<LoggedInUser> login(String username, String password) {
+    private String classTag = "LoginDataSource";
+
+    public Result<LoggedInUser> login(String username, String password, Context context) {
 
         try {
             // TODO: handle loggedInUser authentication
+            Log.d("REST", "Login...");
+            JSONObject body = new JSONObject();
+            body.put("email", username);
+            body.put("password", password);
             LoggedInUser fakeUser =
                     new LoggedInUser(
                             java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
+                            "Jane Doe", "", "", "");
             return new Result.Success<>(fakeUser);
+        } catch (JSONException e) {
+            return new Result.Error(new Exception("Error logging in", e));
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
         }
@@ -26,4 +43,11 @@ public class LoginDataSource {
     public void logout() {
         // TODO: revoke authentication
     }
+
+    private Response.ErrorListener errorListener = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e(classTag, error.toString());
+        }
+    };
 }

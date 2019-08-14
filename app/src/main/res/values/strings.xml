@@ -19,8 +19,10 @@
 
     <!-- Strings related to main activity -->
     <string name="h_rectification">Rectificar Historial</string>
+    <string name="b_rectification">La rectificación es el proceso por el cual el doctor modifica uno o más campos del historial clínico, manteniendo siempre el historial de los cambios</string>
     <string name="rectify">Rectificar</string>
     <string name="patient_list">Lista de Pacientes</string>
+    <string name="b_patient_list">Muestra el listado de pacientes atendidos y sus respectivos historiales clínicos.</string>
     <string name="view">Ver</string>
     <string name="action_settings">Ajustes</string>
     <string name="title_activity_wizard">Asistente</string>
@@ -167,6 +169,16 @@
 
     <!-- URLs -->
     <string name="api_url">https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s</string>
+
+    <!-- Errors -->
+    <string name="internal_error_server">Error interno del sistema</string>
+    <string name="need_pass_refreshToken_field">Es necesario pasar el refresh token como campo</string>
+    <string name="invalid_refreshToken">Token refrescado inválido</string>
+    <string name="missing_email">Falta el correo electrónico</string>
+    <string name="missing_password">Falta la contraseña</string>
+    <string name="invalid_email_or_password">El correo o la contraseña son inválidos</string>
+    <string name="missing_email_password">Falta el correo electrónico y la contraseña</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
