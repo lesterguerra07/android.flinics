@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.flinics.history.view_model.WizardViewModel;
 import com.flinics.history.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +25,7 @@ public class WizardActivity extends AppCompatActivity {
     FloatingActionButton fab_done;
     ViewPager viewPager;
     SectionsPagerAdapter sectionsPagerAdapter;
+    WizardViewModel wizardViewModel;
 
     private HashMap<String, String> data;
 

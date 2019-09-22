@@ -56,8 +56,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         switch (position){
-            case 0:
-                return GeneralInfoFragment.newInstance(data, null);
             case 1:
                 return ReasonConsultationFragment.newInstance(data, "", "");
             case 2:
@@ -79,7 +77,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 10:
                 return OrganEvaluationFragment.newInstance(data, "", "");
             default:
-                return GeneralInfoFragment.newInstance(data, null);
+                return GeneralInfoFragment.newInstance();
         }
     }
 

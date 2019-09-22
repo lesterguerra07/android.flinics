@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName() + " " + model.getToken();
 
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("accessToken", model.getToken());
         startActivity(intent);
 
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();

@@ -163,6 +163,7 @@ public class LoginViewModel extends AndroidViewModel {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                 if(errors == null){
                     loginResult.setValue(new LoginResult(R.string.login_failed));
                     return;
@@ -177,7 +178,6 @@ public class LoginViewModel extends AndroidViewModel {
                         e.printStackTrace();
                     }
                 }
-
 
                 loginResult.setValue(new LoginResult(R.string.login_failed));
             }
