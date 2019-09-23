@@ -28,7 +28,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 
 /**
@@ -40,11 +39,10 @@ import java.util.HashMap;
  * create an instance of this fragment.
  */
 public class GeneralInfoFragment extends Fragment implements IWizardAction {
-    private static final String ARG_DATA = "data";
 
-    //Calendar to get date
+    // Calendar to get date
     private final Calendar calendar = Calendar.getInstance();
-    //date variables
+    // Date variables
     private final int month = calendar.get(Calendar.MONTH);
     private final int day = calendar.get(Calendar.DAY_OF_MONTH);
     private final int year = calendar.get(Calendar.YEAR);
@@ -98,8 +96,6 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         wizardViewModel = ViewModelProviders.of(this.getActivity()).get(WizardViewModel.class);
-
-
     }
 
     @Override

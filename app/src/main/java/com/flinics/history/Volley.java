@@ -19,11 +19,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 import static com.android.volley.Request.Method.GET;
 import static com.android.volley.Request.Method.POST;
 import static com.flinics.history.VolleyQueueConfig.getRequestQueue;
@@ -57,13 +53,14 @@ public class Volley {
     }
 
     public static void postData(final Context context,
-                                final HashMap<String, String> bodyRequestMap,
+                                final JSONObject bodyRequestJsonObject,
                                 final Listener<JSONObject> successListener,
                                 final ErrorListener errorListener,
                                 final String apiVersion,
                                 final String apiMethod,
-                                final String apiParam) {
-        final JSONObject bodyRequestJsonObject = new JSONObject(bodyRequestMap);
+                                final String apiParam
+                                ) {
+
         Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
         final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
 
@@ -104,14 +101,6 @@ public class Volley {
         {
             super(method, url, jsonRequest, listener, errorListener);
         }
-
-
-        /*@Override
-        public Map getHeaders() throws AuthFailureError {
-            Map headers = new HashMap();
-            headers.put("Content-Type", "application/json");
-            return headers;
-        }*/
 
         @Override
         public Map getHeaders() throws AuthFailureError {

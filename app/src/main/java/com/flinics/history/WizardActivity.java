@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.flinics.history.data.model.ClinicHistoryModel;
 import com.flinics.history.view_model.WizardViewModel;
 import com.flinics.history.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,7 +27,7 @@ public class WizardActivity extends AppCompatActivity {
     FloatingActionButton fab_done;
     ViewPager viewPager;
     SectionsPagerAdapter sectionsPagerAdapter;
-    WizardViewModel wizardViewModel;
+    private WizardViewModel wizardViewModel;
 
     private HashMap<String, String> data;
 
@@ -33,6 +35,8 @@ public class WizardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wizard);
+
+        wizardViewModel = ViewModelProviders.of(this).get(WizardViewModel.class);
 
         data = new HashMap<>();
 
@@ -56,7 +60,7 @@ public class WizardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    sendData(data);
+                    sendData();
                 } catch (Exception exception) {
                     Log.e("WizardActivity", "Error sending data", exception);
                 }
@@ -85,12 +89,9 @@ public class WizardActivity extends AppCompatActivity {
 
     }
 
-    private void sendData(HashMap<String, String> data) {
-        for (Map.Entry<String, String> entry : data.entrySet()) {
-            Log.d("WizardActivity", entry.getKey() + ": " + entry.getValue());
-        }
-
-        Volley.postData(this, data, successListener, errorListener, null, null, null);
+    private void sendData() {
+        ClinicHistoryModel data = wizardViewModel.getClinicHistory();
+        Volley.postData(this, data.toJSONObject(), successListener, errorListener, null, null, null);
     }
 
     private Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {

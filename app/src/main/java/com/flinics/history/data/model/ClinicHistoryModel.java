@@ -1,9 +1,17 @@
 package com.flinics.history.data.model;
 
+import android.util.Log;
+
 import com.flinics.history.utils.HistoryUtil;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ClinicHistoryModel {
     private HashMap<String, ArrayList<FieldModel>> _ClinicHistory;
@@ -265,6 +273,31 @@ public class ClinicHistoryModel {
         _ClinicHistory.put(HistoryUtil.oeNeurological.value, new ArrayList<FieldModel>(){{
             add(new FieldModel("", 0));
         }});
+    }
+
+    public HashMap<String, ArrayList<FieldModel>> getClinicHistory(){
+        return _ClinicHistory;
+    }
+
+    public JSONObject toJSONObject() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            for (Map.Entry<String , ArrayList<FieldModel>> entry : _ClinicHistory.entrySet()) {
+                Log.d("DATA","key=" + entry.getKey() + ", value=" + entry.getValue());
+                JSONArray jsonArray = new JSONArray();
+                for (FieldModel field : entry.getValue()){
+
+                        jsonArray.put(new JSONObject()
+                                .put("value",field.value)
+                                .put("version", field.version));
+
+                }
+                jsonObject.put(entry.getKey(), jsonArray);
+            }
+            return jsonObject;
+        } catch (JSONException e) {
+            return null;
+        }
     }
 
     public ArrayList<FieldModel> getData(String field){

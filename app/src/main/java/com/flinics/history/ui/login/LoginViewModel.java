@@ -102,7 +102,7 @@ public class LoginViewModel extends AndroidViewModel {
             HashMap<String, String> body = new HashMap<>();
             body.put("email", user);
             body.put("password", password);
-            Volley.postData(context, body, successListener, errorListener, "1", "auth", "");
+            Volley.postData(context, new JSONObject(body), successListener, errorListener, "1", "auth", "");
         }
 
         private Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
