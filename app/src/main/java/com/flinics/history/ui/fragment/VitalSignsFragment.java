@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.flinics.history.R;
-
-import java.util.HashMap;
+import com.flinics.history.data.model.ClinicHistoryModel;
+import com.flinics.history.interfaces.IWizardAction;
+import com.flinics.history.utils.HistoryUtil;
+import com.flinics.history.view_model.WizardViewModel;
 
 
 /**
@@ -22,19 +26,18 @@ import java.util.HashMap;
  * Use the {@link VitalSignsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VitalSignsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_DATA = "data";
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class VitalSignsFragment extends Fragment implements IWizardAction {
 
-    // TODO: Rename and change types of parameters
-    private HashMap<String, String> mdata;
-    private String mParam1;
-    private String mParam2;
-
+    private WizardViewModel wizardViewModel;
     private OnFragmentInteractionListener mListener;
+
+    // UI Elements
+    protected EditText etTemperature;
+    protected EditText etBloodPressureLeft;
+    protected EditText etBloodPressureRight;
+    protected EditText etHeartRate;
+    protected EditText etPulseRate;
+    protected EditText etBreathingFrequency;
 
     public VitalSignsFragment() {
         // Required empty public constructor
@@ -45,18 +48,12 @@ public class VitalSignsFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      *
-     * @param data
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment VitalSignsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VitalSignsFragment newInstance(HashMap<String, String> data, String param1, String param2) {
+    public static VitalSignsFragment newInstance() {
         VitalSignsFragment fragment = new VitalSignsFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATA, data);
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,18 +61,16 @@ public class VitalSignsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mdata = (HashMap<String, String>) getArguments().getSerializable(ARG_DATA);
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        wizardViewModel = ViewModelProviders.of(this.getActivity()).get(WizardViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vital_signs, container, false);
+        View view =  inflater.inflate(R.layout.fragment_vital_signs, container, false);
+        initComponents(view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,6 +78,12 @@ public class VitalSignsFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public  void onPause() {
+        super.onPause();
+        saveInfo();
     }
 
     @Override
@@ -94,6 +95,39 @@ public class VitalSignsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void displayInfo(ClinicHistoryModel data) {
+        etTemperature.setText(data.getLastData(HistoryUtil.vsTemperature.value).value);
+        etBloodPressureLeft.setText(data.getLastData(HistoryUtil.vsBloodPressureLeft.value).value);
+        etBloodPressureRight.setText(data.getLastData(HistoryUtil.vsBloodPressureRight.value).value);
+        etHeartRate.setText(data.getLastData(HistoryUtil.vsHeartRate.value).value);
+        etPulseRate.setText(data.getLastData(HistoryUtil.vsPulseRate.value).value);
+        etBreathingFrequency.setText(data.getLastData(HistoryUtil.vsBreathingFrequency.value).value);
+    }
+
+    @Override
+    public void saveInfo() {
+        wizardViewModel.setVitalSign(
+                etTemperature.getText().toString(),
+                etBloodPressureLeft.getText().toString(),
+                etBloodPressureRight.getText().toString(),
+                etHeartRate.getText().toString(),
+                etPulseRate.getText().toString(),
+                etBreathingFrequency.getText().toString()
+        );
+    }
+
+    @Override
+    public void initComponents(View view) {
+        etTemperature = view.findViewById(R.id.temperature_EText);
+        etBloodPressureLeft = view.findViewById(R.id.bloodPressureLeft_EText);
+        etBloodPressureRight = view.findViewById(R.id.bloodPressureRight_EText);
+        etHeartRate = view.findViewById(R.id.heartRate_EText);
+        etPulseRate = view.findViewById(R.id.pulseRate_EText);
+        etBreathingFrequency = view.findViewById(R.id.breathingFrequency_EText);
+        displayInfo(wizardViewModel.getClinicHistory());
     }
 
     /**

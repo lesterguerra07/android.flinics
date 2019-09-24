@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.flinics.history.R;
-
-import java.util.HashMap;
+import com.flinics.history.data.model.ClinicHistoryModel;
+import com.flinics.history.interfaces.IWizardAction;
+import com.flinics.history.utils.HistoryUtil;
+import com.flinics.history.view_model.WizardViewModel;
 
 
 /**
@@ -22,19 +26,25 @@ import java.util.HashMap;
  * Use the {@link NoPathologicalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NoPathologicalHistoryFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_DATA = "data";
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class NoPathologicalHistoryFragment extends Fragment implements IWizardAction {
 
-    // TODO: Rename and change types of parameters
-    private HashMap<String, String> mdata;
-    private String mParam1;
-    private String mParam2;
-
+    private WizardViewModel wizardViewModel;
     private OnFragmentInteractionListener mListener;
+
+    // UI Elements
+    protected EditText etPrenatalPeriod;
+    protected EditText etNataPeriod;
+    protected EditText etPosnatalPeriod;
+    protected EditText etImmunizations;
+    protected EditText etNutrition;
+    protected EditText etHabits;
+    protected EditText etMenarquia;
+    protected EditText etMenstrualCycle;
+    protected EditText etLastMenstruation;
+    protected EditText etContraceptiveMethods;
+    protected EditText etGestation;
+    protected EditText etParturitions;
+    protected EditText etLivingChildren;
 
     public NoPathologicalHistoryFragment() {
         // Required empty public constructor
@@ -45,18 +55,12 @@ public class NoPathologicalHistoryFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      *
-     * @param data
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment NoPathologicalHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoPathologicalHistoryFragment newInstance(HashMap<String, String> data, String param1, String param2) {
+    public static NoPathologicalHistoryFragment newInstance() {
         NoPathologicalHistoryFragment fragment = new NoPathologicalHistoryFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATA, data);
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,18 +68,16 @@ public class NoPathologicalHistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mdata = (HashMap<String, String>) getArguments().getSerializable(ARG_DATA);
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        wizardViewModel = ViewModelProviders.of(this.getActivity()).get(WizardViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_no_pathological_history, container, false);
+        View view =  inflater.inflate(R.layout.fragment_no_pathological_history, container, false);
+        initComponents(view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,6 +85,12 @@ public class NoPathologicalHistoryFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public  void onPause() {
+        super.onPause();
+        saveInfo();
     }
 
     @Override
@@ -94,6 +102,60 @@ public class NoPathologicalHistoryFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void displayInfo(ClinicHistoryModel data) {
+        etPrenatalPeriod.setText(data.getLastData(HistoryUtil.nphPrenatalPeriod.value).value);
+        etNataPeriod.setText(data.getLastData(HistoryUtil.nphNataPeriod.value).value);
+        etPosnatalPeriod.setText(data.getLastData(HistoryUtil.nphPostnatalPeriod.value).value);
+        etImmunizations.setText(data.getLastData(HistoryUtil.nphImmunizations.value).value);
+        etNutrition.setText(data.getLastData(HistoryUtil.nphNutrition.value).value);
+        etHabits.setText(data.getLastData(HistoryUtil.nphHabits.value).value);
+        etMenarquia.setText(data.getLastData(HistoryUtil.nphMenarquia.value).value);
+        etMenstrualCycle.setText(data.getLastData(HistoryUtil.nphMenstrualCycle.value).value);
+        etLastMenstruation.setText(data.getLastData(HistoryUtil.nphLastMenstruation.value).value);
+        etContraceptiveMethods.setText(data.getLastData(HistoryUtil.nphContraceptiveMethods.value).value);
+        etGestation.setText(data.getLastData(HistoryUtil.nphGestations.value).value);
+        etParturitions.setText(data.getLastData(HistoryUtil.nphParturitions.value).value);
+        etLivingChildren.setText(data.getLastData(HistoryUtil.nphLivingChildren.value).value);
+    }
+
+    @Override
+    public void saveInfo() {
+        wizardViewModel.setNoPathologicalHistory(
+            etPrenatalPeriod.getText().toString(),
+            etNataPeriod.getText().toString(),
+            etPosnatalPeriod.getText().toString(),
+            etImmunizations.getText().toString(),
+            etNutrition.getText().toString(),
+            etHabits.getText().toString(),
+            etMenarquia.getText().toString(),
+            etMenstrualCycle.getText().toString(),
+            etLastMenstruation.getText().toString(),
+            etContraceptiveMethods.getText().toString(),
+            etGestation.getText().toString(),
+            etParturitions.getText().toString(),
+            etLivingChildren.getText().toString()
+        );
+    }
+
+    @Override
+    public void initComponents(View view) {
+        etPrenatalPeriod = view.findViewById(R.id.prenatalPeriod_EText);
+        etNataPeriod = view.findViewById(R.id.nataPeriod_EText);
+        etPosnatalPeriod = view.findViewById(R.id.posnatalPeriod_EText);
+        etImmunizations = view.findViewById(R.id.immunizations_EText);
+        etNutrition = view.findViewById(R.id.nutrition_EText);
+        etHabits = view.findViewById(R.id.habits_EText);
+        etMenarquia = view.findViewById(R.id.menarquia_EText);
+        etMenstrualCycle = view.findViewById(R.id.menstrualCycle_EText);
+        etLastMenstruation = view.findViewById(R.id.lastMenstruation_EText);
+        etContraceptiveMethods = view.findViewById(R.id.contraceptiveMethods_EText);
+        etGestation = view.findViewById(R.id.gestations_EText);
+        etParturitions = view.findViewById(R.id.parturitions_EText);
+        etLivingChildren = view.findViewById(R.id.livingChildren_EText);
+        displayInfo(wizardViewModel.getClinicHistory());
     }
 
     /**

@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.flinics.history.R;
-
-import java.util.HashMap;
+import com.flinics.history.data.model.ClinicHistoryModel;
+import com.flinics.history.interfaces.IWizardAction;
+import com.flinics.history.utils.HistoryUtil;
+import com.flinics.history.view_model.WizardViewModel;
 
 
 /**
@@ -22,19 +26,30 @@ import java.util.HashMap;
  * Use the {@link SystemsReviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SystemsReviewFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_DATA = "data";
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SystemsReviewFragment extends Fragment implements IWizardAction {
 
-    // TODO: Rename and change types of parameters
-    private HashMap<String, String> mdata;
-    private String mParam1;
-    private String mParam2;
-
+    private WizardViewModel wizardViewModel;
     private OnFragmentInteractionListener mListener;
+
+    // UI Elements
+    protected EditText etConduct;
+    protected EditText etSkinAndFaneras;
+    protected EditText etHead;
+    protected EditText etEyes;
+    protected EditText etNose;
+    protected EditText etMouth;
+    protected EditText etThroat;
+    protected EditText etNeck;
+    protected EditText etMammaryLand;
+    protected EditText etLymphaticSystem;
+    protected EditText etRespiratorySystem;
+    protected EditText etCardiovascularSystem;
+    protected EditText etDigestiveSystem;
+    protected EditText etGenotourinarySystem;
+    protected EditText etEndocrineSystem;
+    protected EditText etSkeletalMuscleSystem;
+    protected EditText etNervousSystem;
+
 
     public SystemsReviewFragment() {
         // Required empty public constructor
@@ -45,18 +60,12 @@ public class SystemsReviewFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      *
-     * @param data
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SystemsReviewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SystemsReviewFragment newInstance(HashMap<String, String> data, String param1, String param2) {
+    public static SystemsReviewFragment newInstance() {
         SystemsReviewFragment fragment = new SystemsReviewFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATA, data);
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,18 +73,16 @@ public class SystemsReviewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mdata = (HashMap<String, String>) getArguments().getSerializable(ARG_DATA);
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        wizardViewModel = ViewModelProviders.of(this.getActivity()).get(WizardViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_systems_review, container, false);
+        View view = inflater.inflate(R.layout.fragment_systems_review, container, false);
+        initComponents(view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,6 +90,12 @@ public class SystemsReviewFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public  void onPause() {
+        super.onPause();
+        saveInfo();
     }
 
     @Override
@@ -94,6 +107,71 @@ public class SystemsReviewFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void displayInfo(ClinicHistoryModel data) {
+        etConduct.setText(data.getLastData(HistoryUtil.srConduct.value).value);
+        etSkinAndFaneras.setText(data.getLastData(HistoryUtil.srSkinAndFaneras.value).value);
+        etHead.setText(data.getLastData(HistoryUtil.srHead.value).value);
+        etEyes.setText(data.getLastData(HistoryUtil.srEyes.value).value);
+        etNose.setText(data.getLastData(HistoryUtil.srNose.value).value);
+        etMouth.setText(data.getLastData(HistoryUtil.srMouth.value).value);
+        etThroat.setText(data.getLastData(HistoryUtil.srThroat.value).value);
+        etNeck.setText(data.getLastData(HistoryUtil.srNeck.value).value);
+        etMammaryLand.setText(data.getLastData(HistoryUtil.srMammaryLand.value).value);
+        etLymphaticSystem.setText(data.getLastData(HistoryUtil.srLymphaticSystem.value).value);
+        etRespiratorySystem.setText(data.getLastData(HistoryUtil.srRespiratorySystem.value).value);
+        etCardiovascularSystem.setText(data.getLastData(HistoryUtil.srCardiovascularSystem.value).value);
+        etDigestiveSystem.setText(data.getLastData(HistoryUtil.srDigestiveSystem.value).value);
+        etGenotourinarySystem.setText(data.getLastData(HistoryUtil.srGenotourinarySystem.value).value);
+        etEndocrineSystem.setText(data.getLastData(HistoryUtil.srEndocrineSystem.value).value);
+        etSkeletalMuscleSystem.setText(data.getLastData(HistoryUtil.srSkeletalMuscleSystem.value).value);
+        etNervousSystem.setText(data.getLastData(HistoryUtil.srNervousSystem.value).value);
+    }
+
+    @Override
+    public void saveInfo() {
+        wizardViewModel.setSystemsReview(
+                etConduct.getText().toString(),
+                etSkinAndFaneras.getText().toString(),
+                etHead.getText().toString(),
+                etEyes.getText().toString(),
+                etNose.getText().toString(),
+                etMouth.getText().toString(),
+                etThroat.getText().toString(),
+                etNeck.getText().toString(),
+                etMammaryLand.getText().toString(),
+                etLymphaticSystem.getText().toString(),
+                etRespiratorySystem.getText().toString(),
+                etCardiovascularSystem.getText().toString(),
+                etDigestiveSystem.getText().toString(),
+                etGenotourinarySystem.getText().toString(),
+                etEndocrineSystem.getText().toString(),
+                etSkeletalMuscleSystem.getText().toString(),
+                etNervousSystem.getText().toString());
+    }
+
+    @Override
+    public void initComponents(View view) {
+        etConduct = view.findViewById(R.id.conduct_EText);
+        etSkinAndFaneras = view.findViewById(R.id.skinAndFaneras_EText);
+        etHead = view.findViewById(R.id.head_EText);
+        etEyes = view.findViewById(R.id.eyes_EText);
+        etNose = view.findViewById(R.id.nose_EText);
+        etMouth = view.findViewById(R.id.mouth_EText);
+        etThroat = view.findViewById(R.id.throat_EText);
+        etNeck = view.findViewById(R.id.neck_EText);
+        etMammaryLand = view.findViewById(R.id.mammaryLand_EText);
+        etLymphaticSystem = view.findViewById(R.id.lymphaticSystem_EText);
+        etRespiratorySystem = view.findViewById(R.id.respiratorySystem_EText);
+        etCardiovascularSystem = view.findViewById(R.id.cardiovascularSystem_EText);
+        etDigestiveSystem = view.findViewById(R.id.digestiveSystem_EText);
+        etGenotourinarySystem = view.findViewById(R.id.genotourinarySystem_EText);
+        etEndocrineSystem = view.findViewById(R.id.endocrineSystem_EText);
+        etSkeletalMuscleSystem = view.findViewById(R.id.skeletalMuscleSystem_EText);
+        etNervousSystem = view.findViewById(R.id.nervousSystem_EText);
+        displayInfo(wizardViewModel.getClinicHistory());
     }
 
     /**

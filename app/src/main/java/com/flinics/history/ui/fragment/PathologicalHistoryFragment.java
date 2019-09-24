@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.flinics.history.R;
-
-import java.util.HashMap;
+import com.flinics.history.data.model.ClinicHistoryModel;
+import com.flinics.history.interfaces.IWizardAction;
+import com.flinics.history.utils.HistoryUtil;
+import com.flinics.history.view_model.WizardViewModel;
 
 
 /**
@@ -22,19 +26,18 @@ import java.util.HashMap;
  * Use the {@link PathologicalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PathologicalHistoryFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_DATA = "data";
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class PathologicalHistoryFragment extends Fragment implements IWizardAction {
 
-    // TODO: Rename and change types of parameters
-    private HashMap<String, String> mdata;
-    private String mParam1;
-    private String mParam2;
-
+    private WizardViewModel wizardViewModel;
     private OnFragmentInteractionListener mListener;
+
+    // UI Elements
+    protected EditText etFamiliars;
+    protected EditText etMedicals;
+    protected EditText etTraumatics;
+    protected EditText etAllergics;
+    protected EditText etGinecoObstetrics;
+    protected EditText etViceAndManias;
 
     public PathologicalHistoryFragment() {
         // Required empty public constructor
@@ -45,18 +48,12 @@ public class PathologicalHistoryFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      *
-     * @param data
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment PathologicalHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PathologicalHistoryFragment newInstance(HashMap<String, String> data, String param1, String param2) {
+    public static PathologicalHistoryFragment newInstance() {
         PathologicalHistoryFragment fragment = new PathologicalHistoryFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATA, data);
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,18 +61,16 @@ public class PathologicalHistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mdata = (HashMap<String, String>) getArguments().getSerializable(ARG_DATA);
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        wizardViewModel = ViewModelProviders.of(this.getActivity()).get(WizardViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pathological_history, container, false);
+        View view =  inflater.inflate(R.layout.fragment_pathological_history, container, false);
+        initComponents(view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -83,6 +78,12 @@ public class PathologicalHistoryFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public  void onPause() {
+        super.onPause();
+        saveInfo();
     }
 
     @Override
@@ -94,6 +95,39 @@ public class PathologicalHistoryFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void displayInfo(ClinicHistoryModel data) {
+        etFamiliars.setText(data.getLastData(HistoryUtil.phFamiliar.value).value);
+        etMedicals.setText(data.getLastData(HistoryUtil.phMedical.value).value);
+        etTraumatics.setText(data.getLastData(HistoryUtil.phTraumatic.value).value);
+        etAllergics.setText(data.getLastData(HistoryUtil.phAllergic.value).value);
+        etGinecoObstetrics.setText(data.getLastData(HistoryUtil.phGinecoObstetrics.value).value);
+        etViceAndManias.setText(data.getLastData(HistoryUtil.phViceAndManias.value).value);
+    }
+
+    @Override
+    public void saveInfo() {
+        wizardViewModel.setPathologicalHistory(
+                etFamiliars.getText().toString(),
+                etMedicals.getText().toString(),
+                etTraumatics.getText().toString(),
+                etAllergics.getText().toString(),
+                etGinecoObstetrics.getText().toString(),
+                etViceAndManias.getText().toString()
+        );
+    }
+
+    @Override
+    public void initComponents(View view) {
+        etFamiliars = view.findViewById(R.id.familiars_EText);
+        etMedicals = view.findViewById(R.id.medicals_EText);
+        etTraumatics = view.findViewById(R.id.traumatics_EText);
+        etAllergics = view.findViewById(R.id.allergics_EText);
+        etGinecoObstetrics = view.findViewById(R.id.ginecoObstetrics_EText);
+        etViceAndManias = view.findViewById(R.id.viceAndManias_EText);
+        displayInfo(wizardViewModel.getClinicHistory());
     }
 
     /**

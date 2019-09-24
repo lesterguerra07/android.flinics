@@ -59,23 +59,23 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return ReasonConsultationFragment.newInstance();
             case 2:
-                return CurrentDiseaseHistoryFragment.newInstance(data, "", "");
+                return CurrentDiseaseHistoryFragment.newInstance();
             case 3:
-                return PathologicalHistoryFragment.newInstance(data, "", "");
+                return PathologicalHistoryFragment.newInstance();
             case 4:
-                return NoPathologicalHistoryFragment.newInstance(data, "", "");
+                return NoPathologicalHistoryFragment.newInstance();
             case 5:
-                return SystemsReviewFragment.newInstance(data, "", "");
+                return SystemsReviewFragment.newInstance();
             case 6:
-                return SocialProfileFragment.newInstance(data, "", "");
+                return SocialProfileFragment.newInstance();
             case 7:
-                return AnthropometricMeasuresFragment.newInstance(data, "", "");
+                return AnthropometricMeasuresFragment.newInstance();
             case 8:
-                return VitalSignsFragment.newInstance(data, "", "");
+                return VitalSignsFragment.newInstance();
             case 9:
-                return GeneralInspectionFragment.newInstance(data, "", "");
+                return GeneralInspectionFragment.newInstance();
             case 10:
-                return OrganEvaluationFragment.newInstance(data, "", "");
+                return OrganEvaluationFragment.newInstance();
             default:
                 return GeneralInfoFragment.newInstance();
         }
