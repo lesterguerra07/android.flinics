@@ -84,7 +84,7 @@ public enum HistoryUtil {
 
     public final String value;
 
-    private HistoryUtil(String value) {
+    HistoryUtil(String value) {
         this.value = value;
     }
 }

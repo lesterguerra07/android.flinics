@@ -1,22 +1,22 @@
 package com.flinics.history.ui.login;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 import android.util.Patterns;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.flinics.history.R;
 import com.flinics.history.Volley;
 import com.flinics.history.data.LoginRepository;
 import com.flinics.history.data.Result;
 import com.flinics.history.data.model.LoggedInUser;
-import com.flinics.history.R;
 import com.flinics.history.error.Error;
 
 import org.json.JSONArray;
@@ -102,7 +102,7 @@ public class LoginViewModel extends AndroidViewModel {
             HashMap<String, String> body = new HashMap<>();
             body.put("email", user);
             body.put("password", password);
-            Volley.postData(context, new JSONObject(body), successListener, errorListener, "1", "auth", "");
+            Volley.postData(context, new JSONObject(body), successListener, errorListener, "1", "auth", "", "");
         }
 
         private Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {

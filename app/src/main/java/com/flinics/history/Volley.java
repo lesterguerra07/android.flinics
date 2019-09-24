@@ -58,7 +58,8 @@ public class Volley {
                                 final ErrorListener errorListener,
                                 final String apiVersion,
                                 final String apiMethod,
-                                final String apiParam
+                                final String apiParam,
+                                final String token
                                 ) {
 
         Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
@@ -68,7 +69,8 @@ public class Volley {
                 uri.toString(),
                 bodyRequestJsonObject,
                 successListener,
-                errorListener);
+                errorListener,
+                token);
 
         RetryPolicy retryPolicy = new DefaultRetryPolicy(
                 30000,
@@ -97,15 +99,19 @@ public class Volley {
 
     public static class CustomJsonObjectRequest  extends JsonObjectRequest
     {
-        public CustomJsonObjectRequest(int method, String url, JSONObject jsonRequest, Response.Listener listener, Response.ErrorListener errorListener)
+        private String _accessToken;
+        public CustomJsonObjectRequest(int method, String url, JSONObject jsonRequest, Response.Listener listener, Response.ErrorListener errorListener, String accessToken)
         {
             super(method, url, jsonRequest, listener, errorListener);
+            _accessToken = accessToken;
         }
 
         @Override
         public Map getHeaders() throws AuthFailureError {
             Map<String, String> header = new HashMap<>();
             header.put("Content-Type","application/json");
+            if(_accessToken != null && _accessToken != "")
+                header.put("authorization", "Bearer " + _accessToken);
             return header;
         }
 

@@ -49,12 +49,11 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
     private static final String _zero = "0";
     private WizardViewModel wizardViewModel;
 
-    private Button btnDate;
-    private EditText etDate;
-
     private OnFragmentInteractionListener mListener;
 
     // UI Elements
+    private Button btnDate;
+    private EditText etDate;
     protected EditText etPatientName;
     protected ToggleButton tbGender;
     protected EditText etBirthdate;
@@ -143,21 +142,6 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 
     @Override
@@ -263,5 +247,19 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
                 , etPhone.getText().toString()
                 , etInformantName.getText().toString()
         );
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 }
