@@ -1,7 +1,6 @@
 package com.flinics.history;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -20,25 +19,30 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import static com.android.volley.Request.Method.GET;
 import static com.android.volley.Request.Method.POST;
 import static com.flinics.history.VolleyQueueConfig.getRequestQueue;
 
 public class Volley {
 
     public static void getData(final Context context,
-                               final Listener<JSONObject> successListener,
-                               final ErrorListener errorListener,
-                               final String apiVersion,
-                               final String apiMethod,
-                               final String apiParam) {
-        final URI uri = URI.create(Resources.getSystem().getString(R.string.api_url, apiVersion, apiMethod, apiParam));
+                                final JSONObject bodyRequestJsonObject,
+                                final Listener<JSONObject> successListener,
+                                final ErrorListener errorListener,
+                                final String apiVersion,
+                                final String apiMethod,
+                                final String apiParam,
+                                final String token
+    ) {
 
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(GET,
+        Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+        final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+
+        final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(POST,
                 uri.toString(),
-                null,
+                bodyRequestJsonObject,
                 successListener,
-                errorListener);
+                errorListener,
+                token);
 
         RetryPolicy retryPolicy = new DefaultRetryPolicy(
                 30000,
@@ -47,6 +51,19 @@ public class Volley {
         );
 
         jsonObjectRequest.setRetryPolicy(retryPolicy);
+
+        Iterator it = null;
+        try {
+            it = jsonObjectRequest.getHeaders().entrySet().iterator();
+        } catch (AuthFailureError authFailureError) {
+            Log.d("Headers", authFailureError.getMessage());
+        }
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            Log.d("Headers", pair.getKey() + ":" + pair.getValue());
+        }
+
 
         final RequestQueue queue = getRequestQueue(context);
         queue.add(jsonObjectRequest);
