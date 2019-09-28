@@ -105,11 +105,10 @@ public class AnthropometricMeasuresFragment extends Fragment implements IWizardA
     public void displayInfo(ClinicHistoryModel data) {
         etWeight.setText(data.getLastData(HistoryUtil.amWeight.value).value);
         etSize.setText(data.getLastData(HistoryUtil.amSize.value).value);
-        etBMI.setText(data.getLastData(HistoryUtil.amImc.value).value);
         etCephalicCircumference.setText(data.getLastData(HistoryUtil.amCephalicCircumference.value).value);
 
         int selectedSize;
-        if (data.getLastData(HistoryUtil.amSizeUnit.value).value == this.getActivity().getResources().getString(R.string.centimeter)){
+        if (data.getLastData(HistoryUtil.amSizeUnit.value).value.equals(this.getActivity().getResources().getString(R.string.centimeter))){
             selectedSize = R.id.centimeter_RButton;
         } else {
             selectedSize = R.id.meter_RButton;
@@ -117,12 +116,13 @@ public class AnthropometricMeasuresFragment extends Fragment implements IWizardA
         rgSize.check(selectedSize);
 
         int selectedWeight;
-        if (data.getLastData(HistoryUtil.amWeightUnit.value).value == this.getActivity().getResources().getString(R.string.pound)){
+        if (data.getLastData(HistoryUtil.amWeightUnit.value).value.equals(this.getActivity().getResources().getString(R.string.pound))){
             selectedWeight = R.id.pound_RButton;
         } else {
             selectedWeight = R.id.kilogram_RButton;
         }
         rgWeight.check(selectedWeight);
+        etBMI.setText(data.getLastData(HistoryUtil.amImc.value).value);
     }
 
     @Override

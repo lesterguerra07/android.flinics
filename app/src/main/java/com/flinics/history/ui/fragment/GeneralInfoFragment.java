@@ -177,12 +177,13 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
     @Override
     public void displayInfo(ClinicHistoryModel data){
         etPatientName.setText(data.getLastData(HistoryUtil.giName.value).value);
-        tbGender.setChecked(data.getLastData(HistoryUtil.giGender.value).value == this.getActivity().getResources().getString(R.string.male));
+        tbGender.setChecked(data.getLastData(HistoryUtil.giGender.value).value.equals(this.getActivity().getResources().getString(R.string.male)));
         etBirthdate.setText(data.getLastData(HistoryUtil.giBirthdate.value).value);
+        btnDate.setText(data.getLastData(HistoryUtil.giBirthdate.value).value);
         int selectedCivilStatus;
-        if (data.getLastData(HistoryUtil.giCivilStatus.value).value == this.getActivity().getResources().getString(R.string.single)){
+        if (data.getLastData(HistoryUtil.giCivilStatus.value).value.equals(this.getActivity().getResources().getString(R.string.single))){
             selectedCivilStatus = R.id.single_RButton;
-        } else if (data.getLastData(HistoryUtil.giCivilStatus.value).value == this.getActivity().getResources().getString(R.string.married)){
+        } else if (data.getLastData(HistoryUtil.giCivilStatus.value).value.equals(this.getActivity().getResources().getString(R.string.married))){
             selectedCivilStatus = R.id.married_RButton;
         } else {
             selectedCivilStatus = R.id.lawfulUnion_RButton;
@@ -194,25 +195,25 @@ public class GeneralInfoFragment extends Fragment implements IWizardAction {
         etProfession.setText(data.getLastData(HistoryUtil.giProfession.value).value);
         etOccupation.setText(data.getLastData(HistoryUtil.giOccupation.value).value);
         int selectedRace;
-        if (data.getLastData(HistoryUtil.giRace.value).value == this.getActivity().getResources().getString(R.string.white_race)){
+        if (data.getLastData(HistoryUtil.giRace.value).value.equals(this.getActivity().getResources().getString(R.string.white_race))){
             selectedRace = R.id.whiteRace_RButton;
-        } else if (data.getLastData(HistoryUtil.giRace.value).value == this.getActivity().getResources().getString(R.string.black_race)){
+        } else if (data.getLastData(HistoryUtil.giRace.value).value.equals(this.getActivity().getResources().getString(R.string.black_race))){
             selectedRace = R.id.blackRace_RButton;
-        } else if (data.getLastData(HistoryUtil.giRace.value).value == this.getActivity().getResources().getString(R.string.cooper_race)){
+        } else if (data.getLastData(HistoryUtil.giRace.value).value.equals(this.getActivity().getResources().getString(R.string.cooper_race))){
             selectedRace = R.id.cooperRace_RButton;
         } else {
             selectedRace = R.id.yellowRace_RButton;
         }
         rgRace.check(selectedRace);
         int selectedEthnicity;
-        if (data.getLastData(HistoryUtil.giRace.value).value == this.getActivity().getResources().getString(R.string.no_native_ethnicity)){
+        if (data.getLastData(HistoryUtil.giEthnicity.value).value.equals(this.getActivity().getResources().getString(R.string.no_native_ethnicity))){
             selectedEthnicity = R.id.noNative_RButton;
         } else {
             selectedEthnicity = R.id.native_RButton;
         }
         rgEthnicity.check(selectedEthnicity);
         etScholarship.setText(data.getLastData(HistoryUtil.giScholarship.value).value);
-        tbLiterate.setChecked(data.getLastData(HistoryUtil.giLiterate.value).value == this.getActivity().getResources().getString(R.string.illiterate));
+        tbLiterate.setChecked(data.getLastData(HistoryUtil.giLiterate.value).value.equals(this.getActivity().getResources().getString(R.string.illiterate)));
         etPhone.setText(data.getLastData(HistoryUtil.giPhone.value).value);
         etInformantName.setText(data.getLastData(HistoryUtil.giInformantName.value).value);
     }

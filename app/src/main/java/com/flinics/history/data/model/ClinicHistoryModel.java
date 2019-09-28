@@ -3,7 +3,6 @@ package com.flinics.history.data.model;
 import android.util.Log;
 
 import com.flinics.history.utils.HistoryUtil;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -347,6 +346,7 @@ public class ClinicHistoryModel {
     }
 
     public class FieldModel{
+        public String _id;
         public int version;
         public String value;
 

@@ -11,16 +11,29 @@ import com.flinics.history.utils.HistoryUtil;
 
 public class WizardViewModel extends AndroidViewModel {
     private String tag = this.getClass().getSimpleName();
-    private ClinicHistoryModel data;
+    private String _id = "";
+    private ClinicHistoryModel _data;
     private MutableLiveData<Integer> edad = new MutableLiveData<>();
 
     public WizardViewModel(@NonNull Application application) {
         super(application);
-        data = new ClinicHistoryModel();
+        _data = new ClinicHistoryModel();
     }
 
     public ClinicHistoryModel getClinicHistory(){
-        return data;
+        return _data;
+    }
+
+    public  void setId(String id){
+        _id = id;
+    }
+
+    public String getId(){
+        return _id;
+    }
+
+    public void setClinicHistory(ClinicHistoryModel data){
+        _data = data;
     }
 
     public MutableLiveData<Integer> getEdad(){
@@ -49,30 +62,30 @@ public class WizardViewModel extends AndroidViewModel {
             , String Phone
             , String InformantName
     ){
-        data.setData(HistoryUtil.giName.value, Name);
-        data.setData(HistoryUtil.giAge.value, Age);
-        data.setData(HistoryUtil.giBirthdate.value, Birthdate);
-        data.setData(HistoryUtil.giGender.value, Gender);
-        data.setData(HistoryUtil.giCivilStatus.value, CivilStatus);
-        data.setData(HistoryUtil.giReligion.value, Religion);
-        data.setData(HistoryUtil.giOrigin.value, Origin);
-        data.setData(HistoryUtil.giHome.value, Home);
-        data.setData(HistoryUtil.giProfession.value, Profession);
-        data.setData(HistoryUtil.giOccupation.value, Occupation);
-        data.setData(HistoryUtil.giRace.value, Race);
-        data.setData(HistoryUtil.giEthnicity.value, Ethnicity);
-        data.setData(HistoryUtil.giScholarship.value, Scholarship);
-        data.setData(HistoryUtil.giLiterate.value, Literate);
-        data.setData(HistoryUtil.giPhone.value, Phone);
-        data.setData(HistoryUtil.giInformantName.value, InformantName);
+        _data.setData(HistoryUtil.giName.value, Name);
+        _data.setData(HistoryUtil.giAge.value, Age);
+        _data.setData(HistoryUtil.giBirthdate.value, Birthdate);
+        _data.setData(HistoryUtil.giGender.value, Gender);
+        _data.setData(HistoryUtil.giCivilStatus.value, CivilStatus);
+        _data.setData(HistoryUtil.giReligion.value, Religion);
+        _data.setData(HistoryUtil.giOrigin.value, Origin);
+        _data.setData(HistoryUtil.giHome.value, Home);
+        _data.setData(HistoryUtil.giProfession.value, Profession);
+        _data.setData(HistoryUtil.giOccupation.value, Occupation);
+        _data.setData(HistoryUtil.giRace.value, Race);
+        _data.setData(HistoryUtil.giEthnicity.value, Ethnicity);
+        _data.setData(HistoryUtil.giScholarship.value, Scholarship);
+        _data.setData(HistoryUtil.giLiterate.value, Literate);
+        _data.setData(HistoryUtil.giPhone.value, Phone);
+        _data.setData(HistoryUtil.giInformantName.value, InformantName);
     }
 
     public void setConsultationReason(String ConsultationReason){
-        data.setData(HistoryUtil.consultationReason.value, ConsultationReason);
+        _data.setData(HistoryUtil.consultationReason.value, ConsultationReason);
     }
 
     public void setCurrentDiseaseHistory(String CurrentDiseaseHistory){
-        data.setData(HistoryUtil.currentDiseaseHistory.value, CurrentDiseaseHistory);
+        _data.setData(HistoryUtil.currentDiseaseHistory.value, CurrentDiseaseHistory);
     }
 
     public void setPathologicalHistory(
@@ -83,12 +96,12 @@ public class WizardViewModel extends AndroidViewModel {
             , String GinecoObstetrics
             , String ViceAndManias
     ){
-        data.setData(HistoryUtil.phFamiliar.value, Familiar);
-        data.setData(HistoryUtil.phMedical.value, Medical);
-        data.setData(HistoryUtil.phTraumatic.value, Traumatic);
-        data.setData(HistoryUtil.phAllergic.value, Allergic);
-        data.setData(HistoryUtil.phGinecoObstetrics.value, GinecoObstetrics);
-        data.setData(HistoryUtil.phViceAndManias.value, ViceAndManias);
+        _data.setData(HistoryUtil.phFamiliar.value, Familiar);
+        _data.setData(HistoryUtil.phMedical.value, Medical);
+        _data.setData(HistoryUtil.phTraumatic.value, Traumatic);
+        _data.setData(HistoryUtil.phAllergic.value, Allergic);
+        _data.setData(HistoryUtil.phGinecoObstetrics.value, GinecoObstetrics);
+        _data.setData(HistoryUtil.phViceAndManias.value, ViceAndManias);
     }
 
     public void setNoPathologicalHistory(
@@ -106,19 +119,19 @@ public class WizardViewModel extends AndroidViewModel {
             , String Parturitions
             , String LivingChildren
     ){
-        data.setData(HistoryUtil.nphPrenatalPeriod.value, PrenatalPeriod);
-        data.setData(HistoryUtil.nphNataPeriod.value, NataPeriod);
-        data.setData(HistoryUtil.nphPostnatalPeriod.value, PostnatalPeriod);
-        data.setData(HistoryUtil.nphImmunizations.value, Immunizations);
-        data.setData(HistoryUtil.nphNutrition.value, Nutrition);
-        data.setData(HistoryUtil.nphHabits.value, Habits);
-        data.setData(HistoryUtil.nphMenarquia.value, Menarquia);
-        data.setData(HistoryUtil.nphMenstrualCycle.value, MenstrualCycle);
-        data.setData(HistoryUtil.nphLastMenstruation.value, LastMenstruation);
-        data.setData(HistoryUtil.nphContraceptiveMethods.value, ContraceptiveMethods);
-        data.setData(HistoryUtil.nphGestations.value, Gestations);
-        data.setData(HistoryUtil.nphParturitions.value, Parturitions);
-        data.setData(HistoryUtil.nphLivingChildren.value, LivingChildren);
+        _data.setData(HistoryUtil.nphPrenatalPeriod.value, PrenatalPeriod);
+        _data.setData(HistoryUtil.nphNataPeriod.value, NataPeriod);
+        _data.setData(HistoryUtil.nphPostnatalPeriod.value, PostnatalPeriod);
+        _data.setData(HistoryUtil.nphImmunizations.value, Immunizations);
+        _data.setData(HistoryUtil.nphNutrition.value, Nutrition);
+        _data.setData(HistoryUtil.nphHabits.value, Habits);
+        _data.setData(HistoryUtil.nphMenarquia.value, Menarquia);
+        _data.setData(HistoryUtil.nphMenstrualCycle.value, MenstrualCycle);
+        _data.setData(HistoryUtil.nphLastMenstruation.value, LastMenstruation);
+        _data.setData(HistoryUtil.nphContraceptiveMethods.value, ContraceptiveMethods);
+        _data.setData(HistoryUtil.nphGestations.value, Gestations);
+        _data.setData(HistoryUtil.nphParturitions.value, Parturitions);
+        _data.setData(HistoryUtil.nphLivingChildren.value, LivingChildren);
     }
 
     public void setSystemsReview(
@@ -140,27 +153,27 @@ public class WizardViewModel extends AndroidViewModel {
             , String SkeletalMuscleSystem
             , String NervousSystem
     ){
-        data.setData(HistoryUtil.srConduct.value, Conduct);
-        data.setData(HistoryUtil.srSkinAndFaneras.value, SkinAndFaneras);
-        data.setData(HistoryUtil.srHead.value, Head);
-        data.setData(HistoryUtil.srEyes.value, Eyes);
-        data.setData(HistoryUtil.srNose.value, Nose);
-        data.setData(HistoryUtil.srMouth.value, Mouth);
-        data.setData(HistoryUtil.srThroat.value, Throat);
-        data.setData(HistoryUtil.srNeck.value, Neck);
-        data.setData(HistoryUtil.srMammaryLand.value, MammaryLand);
-        data.setData(HistoryUtil.srLymphaticSystem.value, LymphaticSystem);
-        data.setData(HistoryUtil.srRespiratorySystem.value, RespiratorySystem);
-        data.setData(HistoryUtil.srCardiovascularSystem.value, CardiovascularSystem);
-        data.setData(HistoryUtil.srDigestiveSystem.value, DigestiveSystem);
-        data.setData(HistoryUtil.srGenotourinarySystem.value, GenotourinarySystem);
-        data.setData(HistoryUtil.srEndocrineSystem.value, EndocrineSystem);
-        data.setData(HistoryUtil.srSkeletalMuscleSystem.value, SkeletalMuscleSystem);
-        data.setData(HistoryUtil.srNervousSystem.value, NervousSystem);
+        _data.setData(HistoryUtil.srConduct.value, Conduct);
+        _data.setData(HistoryUtil.srSkinAndFaneras.value, SkinAndFaneras);
+        _data.setData(HistoryUtil.srHead.value, Head);
+        _data.setData(HistoryUtil.srEyes.value, Eyes);
+        _data.setData(HistoryUtil.srNose.value, Nose);
+        _data.setData(HistoryUtil.srMouth.value, Mouth);
+        _data.setData(HistoryUtil.srThroat.value, Throat);
+        _data.setData(HistoryUtil.srNeck.value, Neck);
+        _data.setData(HistoryUtil.srMammaryLand.value, MammaryLand);
+        _data.setData(HistoryUtil.srLymphaticSystem.value, LymphaticSystem);
+        _data.setData(HistoryUtil.srRespiratorySystem.value, RespiratorySystem);
+        _data.setData(HistoryUtil.srCardiovascularSystem.value, CardiovascularSystem);
+        _data.setData(HistoryUtil.srDigestiveSystem.value, DigestiveSystem);
+        _data.setData(HistoryUtil.srGenotourinarySystem.value, GenotourinarySystem);
+        _data.setData(HistoryUtil.srEndocrineSystem.value, EndocrineSystem);
+        _data.setData(HistoryUtil.srSkeletalMuscleSystem.value, SkeletalMuscleSystem);
+        _data.setData(HistoryUtil.srNervousSystem.value, NervousSystem);
     }
 
     public void setSocialProfile(String SocialProfile){
-        data.setData(HistoryUtil.socialProfile.value, SocialProfile);
+        _data.setData(HistoryUtil.socialProfile.value, SocialProfile);
     }
 
     public void setAntropometricMeasures(
@@ -171,12 +184,12 @@ public class WizardViewModel extends AndroidViewModel {
             , String Imc
             , String CephalicCircumference
     ){
-        data.setData(HistoryUtil.amWeight.value, Weight);
-        data.setData(HistoryUtil.amWeightUnit.value, WeightUnit);
-        data.setData(HistoryUtil.amSize.value, Size);
-        data.setData(HistoryUtil.amSizeUnit.value, SizeUnit);
-        data.setData(HistoryUtil.amImc.value, Imc);
-        data.setData(HistoryUtil.amCephalicCircumference.value, CephalicCircumference);
+        _data.setData(HistoryUtil.amWeight.value, Weight);
+        _data.setData(HistoryUtil.amWeightUnit.value, WeightUnit);
+        _data.setData(HistoryUtil.amSize.value, Size);
+        _data.setData(HistoryUtil.amSizeUnit.value, SizeUnit);
+        _data.setData(HistoryUtil.amImc.value, Imc);
+        _data.setData(HistoryUtil.amCephalicCircumference.value, CephalicCircumference);
     }
 
     public void setVitalSign(
@@ -187,16 +200,16 @@ public class WizardViewModel extends AndroidViewModel {
             , String PulseRate
             , String BreathingFrequency
     ){
-        data.setData(HistoryUtil.vsTemperature.value, Temperature);
-        data.setData(HistoryUtil.vsBloodPressureLeft.value, BloodPressureLeft);
-        data.setData(HistoryUtil.vsBloodPressureRight.value, BloodPressureRight);
-        data.setData(HistoryUtil.vsHeartRate.value, HeartRate);
-        data.setData(HistoryUtil.vsPulseRate.value, PulseRate);
-        data.setData(HistoryUtil.vsBreathingFrequency.value, BreathingFrequency);
+        _data.setData(HistoryUtil.vsTemperature.value, Temperature);
+        _data.setData(HistoryUtil.vsBloodPressureLeft.value, BloodPressureLeft);
+        _data.setData(HistoryUtil.vsBloodPressureRight.value, BloodPressureRight);
+        _data.setData(HistoryUtil.vsHeartRate.value, HeartRate);
+        _data.setData(HistoryUtil.vsPulseRate.value, PulseRate);
+        _data.setData(HistoryUtil.vsBreathingFrequency.value, BreathingFrequency);
     }
 
     public void setGeneralInspection(String GeneralInspection){
-        data.setData(HistoryUtil.generalInspection.value, GeneralInspection);
+        _data.setData(HistoryUtil.generalInspection.value, GeneralInspection);
     }
 
     public void setOrganEvaluation(
@@ -213,18 +226,18 @@ public class WizardViewModel extends AndroidViewModel {
             , String Extremities
             , String Neurological
     ){
-        data.setData(HistoryUtil.oeSkinAndFaneras.value, SkinAndFaneras);
-        data.setData(HistoryUtil.oeHead.value, Head);
-        data.setData(HistoryUtil.oeEyes.value, Eyes);
-        data.setData(HistoryUtil.oeEars.value, Ears);
-        data.setData(HistoryUtil.oeNose.value, Nose);
-        data.setData(HistoryUtil.oeOropharynx.value, Oropharynx);
-        data.setData(HistoryUtil.oeNeck.value, Neck);
-        data.setData(HistoryUtil.oeChest.value, Chest);
-        data.setData(HistoryUtil.oeAbdomen.value, Abdomen);
-        data.setData(HistoryUtil.oeLumbarRegion.value, LumbarRegion);
-        data.setData(HistoryUtil.oeExtremities.value, Extremities);
-        data.setData(HistoryUtil.oeNeurological.value, Neurological);
+        _data.setData(HistoryUtil.oeSkinAndFaneras.value, SkinAndFaneras);
+        _data.setData(HistoryUtil.oeHead.value, Head);
+        _data.setData(HistoryUtil.oeEyes.value, Eyes);
+        _data.setData(HistoryUtil.oeEars.value, Ears);
+        _data.setData(HistoryUtil.oeNose.value, Nose);
+        _data.setData(HistoryUtil.oeOropharynx.value, Oropharynx);
+        _data.setData(HistoryUtil.oeNeck.value, Neck);
+        _data.setData(HistoryUtil.oeChest.value, Chest);
+        _data.setData(HistoryUtil.oeAbdomen.value, Abdomen);
+        _data.setData(HistoryUtil.oeLumbarRegion.value, LumbarRegion);
+        _data.setData(HistoryUtil.oeExtremities.value, Extremities);
+        _data.setData(HistoryUtil.oeNeurological.value, Neurological);
     }
 
 }

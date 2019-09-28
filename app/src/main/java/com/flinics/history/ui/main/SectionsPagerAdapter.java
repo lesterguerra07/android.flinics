@@ -21,8 +21,6 @@ import com.flinics.history.ui.fragment.SocialProfileFragment;
 import com.flinics.history.ui.fragment.SystemsReviewFragment;
 import com.flinics.history.ui.fragment.VitalSignsFragment;
 
-import java.util.HashMap;
-
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -44,12 +42,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             , R.string.tab_organ_evaluation
     };
     private final Context mContext;
-    private HashMap<String, String> data;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, HashMap<String, String> data) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
-        this.data = data;
     }
 
     @Override

@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), WizardActivity.class);
                 intent.putExtra("accessToken", accessToken);
+                intent.putExtra("historyId", "5d8e7730c6b4924b0dac2710");// Optional
                 startActivity(intent);
             }
         });

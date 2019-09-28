@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.android.volley.Request.Method.GET;
 import static com.android.volley.Request.Method.POST;
 import static com.flinics.history.VolleyQueueConfig.getRequestQueue;
 
@@ -37,7 +38,7 @@ public class Volley {
         Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
         final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
 
-        final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(POST,
+        final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(GET,
                 uri.toString(),
                 bodyRequestJsonObject,
                 successListener,
