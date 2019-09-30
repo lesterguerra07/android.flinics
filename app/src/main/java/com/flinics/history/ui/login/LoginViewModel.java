@@ -141,7 +141,7 @@ public class LoginViewModel extends AndroidViewModel {
 
                 if (result instanceof Result.Success) {
                     LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-                    loginResult.setValue(new LoginResult(new LoggedInUserView(data.getName(), data.getAccessToken())));
+                    loginResult.setValue(new LoginResult(new LoggedInUserView(data.getName(), data.getAccessToken(), data.get_id())));
                 } else {
                     loginResult.setValue(new LoginResult(R.string.login_failed));
                 }

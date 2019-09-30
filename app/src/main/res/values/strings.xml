@@ -24,8 +24,11 @@
     <string name="patient_list">Lista de Pacientes</string>
     <string name="b_patient_list">Muestra el listado de pacientes atendidos y sus respectivos historiales clínicos.</string>
     <string name="view">Ver</string>
+    <string name="print">Imprimir</string>
+    <string name="delete">Borrar</string>
     <string name="action_settings">Ajustes</string>
     <string name="title_activity_wizard">Asistente</string>
+    <string name="patient_description">Paciente %1$s de %2$s de edad</string>
 
     <!-- Strings related to patients tabs -->
     <string name="title_activity_patients">Pacientes</string>

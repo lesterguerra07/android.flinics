@@ -1,55 +1,37 @@
 package com.flinics.history;
 
-import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.flinics.history.ui.adapter.HistoryListAdapter;
+import com.flinics.history.ui.model.History;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.util.UUID;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private String accessToken = "";
-    private File file;
-    private long downloadID;
+    private String userId = "";
 
-    private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //Fetching the download id received with the broadcast
-            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-            //Checking if the received broadcast is for our enqueued download by matching download id
-            if (downloadID == id) {
-                Toast.makeText(MainActivity.this, "Descarga Completa", Toast.LENGTH_SHORT).show();
-                openFile();
-            }
-        }
-    };
-
-    // See: https://stackoverflow.com/questions/36766483/after-download-how-to-open-downloaded-file
-    // Also: https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
-    private void openFile() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Uri fileURI = FileProvider.getUriForFile(MainActivity.this,
-                BuildConfig.APPLICATION_ID + ".provider",
-                file);
-        intent.setDataAndType(fileURI,
-                "application/pdf");
-        startActivity(intent);
-    }
+    private HistoryListAdapter listAdapter;
+    private ArrayList<History> HistoryList = new ArrayList<>();
+    private RecyclerView recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Getting accessToken
         Intent intent = getIntent();
         accessToken = intent.getStringExtra("accessToken");
+        userId = intent.getStringExtra("userId");
 
         FloatingActionButton fab = findViewById(R.id.preview_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,38 +51,70 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), WizardActivity.class);
                 intent.putExtra("accessToken", accessToken);
-                intent.putExtra("historyId", "5d8e7730c6b4924b0dac2710");// Optional
                 startActivity(intent);
             }
         });
 
-        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        recycler = findViewById(R.id.historyList_RView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layoutManager);
+        listAdapter = new HistoryListAdapter(HistoryList, this, accessToken);
+        recycler.addItemDecoration(new DividerItemDecoration(this,
+                layoutManager.getOrientation()));
+        recycler.setAdapter(listAdapter);
 
-        final Button patientsButton = findViewById(R.id.patient_button);
-        patientsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                beginDownload();
+        getHistoryList();
+
+    }
+
+    private void getHistoryList(){
+        Volley.getData(this, null, successGetDataListener, errorGetDataListener, "1", "history/user/minified", userId, accessToken);
+
+    }
+
+    private Response.Listener<JSONObject> successGetDataListener = new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            try {
+                Log.d("MainActivity", response.toString());
+                HashMap<String, ArrayList<HashMap>> historyData = new Gson().fromJson(response.toString(), new TypeToken<HashMap<String, ArrayList<HashMap>>>(){}.getType());
+                ArrayList<HashMap> historyList = historyData.get("histories");
+                if (historyList != null){
+                    for (HashMap historyItem : historyList){
+                        String id = (String) historyItem.get("_id");
+                        String name = "";
+                        String gender = "";
+                        String age = "";
+                        ArrayList nameObject = (ArrayList)historyItem.get("giName");
+                        if (nameObject.size() > 0){
+                            name = (String)((LinkedTreeMap) nameObject.get(nameObject.size() - 1)).get("value");
+                        }
+                        ArrayList genderObject = (ArrayList)historyItem.get("giGender");
+                        if (genderObject.size() > 0){
+                            gender = (String)((LinkedTreeMap) genderObject.get(genderObject.size() - 1)).get("value");
+                        }
+                        ArrayList ageObject = (ArrayList)historyItem.get("giAge");
+                        if (ageObject.size() > 0){
+                            age = (String)((LinkedTreeMap) ageObject.get(ageObject.size() - 1)).get("value");
+                        }
+                        HistoryList.add(new History(id,name, gender, age));
+                    }
+                    listAdapter.notifyDataSetChanged();
+                }
+            } catch (Exception e){
+                Log.e("MainActivity", e.getStackTrace().toString());
             }
-        });
-    }
 
-    // See: https://androidclarified.com/android-downloadmanager-example/
-    private void beginDownload(){
-        Toast.makeText(MainActivity.this, "Descargando...", Toast.LENGTH_SHORT).show();
-        String fileName = "Flinics." + UUID.randomUUID().toString() + ".pdf";
-        file = new File(getExternalFilesDir(null),fileName);
 
-        DownloadManager.Request request=new DownloadManager.Request(Uri.parse("https://api.flinics.brickapps.com/v1/file/5d8a642502b9f21045750b8c"))
-                .setTitle("Historia Clínica")
-                .setDescription("Descargando")
-                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                .setDestinationUri(Uri.fromFile(file))
-                .setAllowedOverMetered(true)
-                .setAllowedOverRoaming(true)
-                .addRequestHeader("authorization", "Bearer " + accessToken);
-        DownloadManager downloadManager= (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-        downloadID = downloadManager.enqueue(request);
-    }
+
+        }
+    };
+
+    private Response.ErrorListener errorGetDataListener = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e("WizardActivity", error.toString());
+        }
+    };
 
 }
