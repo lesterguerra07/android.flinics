@@ -49,7 +49,7 @@
             tools:text="@tools:sample/lorem/random" />
 
         <Button
-            android:id="@+id/view_Button"
+            android:id="@+id/rectify_Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

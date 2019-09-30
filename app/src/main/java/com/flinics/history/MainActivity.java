@@ -67,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        getHistoryList();
+    }
+
     private void getHistoryList(){
         HistoryList.clear();
         Volley.getData(this, null, successGetDataListener, errorGetDataListener, "1", "history/user/minified", userId, accessToken);

@@ -178,7 +178,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
             tvSubtitle = itemView.findViewById(R.id.subtitle_TView);
             btnDelete = itemView.findViewById(R.id.delete_Button);
             btnDownload = itemView.findViewById(R.id.download_Button);
-            btnView = itemView.findViewById(R.id.view_Button);
+            btnView = itemView.findViewById(R.id.rectify_Button);
         }
 
         public void setHistoryTitle(String title) {

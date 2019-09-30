@@ -1,12 +1,14 @@
 package com.flinics.history;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WizardActivity extends AppCompatActivity {
+    private Context context;
     FloatingActionButton fab_mic;
     FloatingActionButton fab_done;
     ViewPager viewPager;
@@ -44,6 +47,8 @@ public class WizardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wizard);
+
+        context = this;
 
         Intent intent = getIntent();
         _accessToken =  intent.getStringExtra("accessToken");
@@ -123,6 +128,8 @@ public class WizardActivity extends AppCompatActivity {
         @Override
         public void onResponse(JSONObject response) {
             Log.d("WizardActivity", response.toString());
+            Toast.makeText(context, "Historia creada exitosamente!", Toast.LENGTH_SHORT).show();
+            finish();
 
         }
     };
