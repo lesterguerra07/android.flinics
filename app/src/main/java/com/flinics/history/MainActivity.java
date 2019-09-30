@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getHistoryList(){
+        HistoryList.clear();
         Volley.getData(this, null, successGetDataListener, errorGetDataListener, "1", "history/user/minified", userId, accessToken);
 
     }
@@ -104,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e){
                 Log.e("MainActivity", e.getStackTrace().toString());
             }
-
-
-
         }
     };
 

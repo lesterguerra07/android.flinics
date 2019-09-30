@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.flinics.history.BuildConfig;
 import com.flinics.history.R;
+import com.flinics.history.Volley;
 import com.flinics.history.WizardActivity;
 import com.flinics.history.ui.model.History;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,7 +58,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoryHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryHolder holder, final int position) {
         final History history = _historyList.get(position);
 
         _context.registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -81,7 +87,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(_context, "Eliminando...", Toast.LENGTH_SHORT).show();
+                _historyList.remove(position);
+                Volley.deleteData(_context, null, successDeleteDataListener, errorDeleteDataListener, "1", "history", history.getId(), _accessToken);
             }
         });
     }
@@ -138,6 +146,22 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         DownloadManager downloadManager= (DownloadManager) _context.getSystemService(_context.DOWNLOAD_SERVICE);
         downloadID = downloadManager.enqueue(request);
     }
+
+    private Response.Listener<JSONObject> successDeleteDataListener = new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            Log.d("MainActivity", response.toString());
+            notifyDataSetChanged();
+            Toast.makeText(_context, "Historia eliminada exitosamente!", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private Response.ErrorListener errorDeleteDataListener = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            Log.e("WizardActivity", error.toString());
+        }
+    };
 
     public class HistoryHolder extends RecyclerView.ViewHolder {
 
