@@ -2,7 +2,6 @@ package com.flinics.history.ui.login;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 import android.util.Patterns;
 
 import androidx.annotation.NonNull;
@@ -108,7 +107,7 @@ public class LoginViewModel extends AndroidViewModel {
         private Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(tag, response.toString());
+                // Log.d(tag, response.toString());
                 String responseID;
                 String responseName;
                 String responseEmail;
@@ -132,10 +131,10 @@ public class LoginViewModel extends AndroidViewModel {
                             );
                     result = new Result.Success<>(user);
                 } catch (JSONException exception) {
-                    Log.e(tag, "Failed to deserialize auth response", exception);
+                    // Log.e(tag, "Failed to deserialize auth response", exception);
                     result = new Result.Error(new Exception("Failed to deserialize auth response", exception));
                 }catch (Exception exception){
-                    Log.e(tag, "Failed to deserialize args", exception);
+                    // Log.e(tag, "Failed to deserialize args", exception);
                     result = new Result.Error(new Exception("Failed to deserialize args", exception));
                 }
 
@@ -171,7 +170,7 @@ public class LoginViewModel extends AndroidViewModel {
 
                 if(errors.length() >= 1){
                     try {
-                        Log.e(tag, error.toString());
+                        // Log.e(tag, error.toString());
                         loginResult.setValue(new LoginResult(Error.getErrorResource(errors.getString(0))));
                         return;
                     } catch (JSONException e) {

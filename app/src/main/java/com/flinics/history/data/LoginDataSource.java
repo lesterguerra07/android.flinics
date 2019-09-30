@@ -1,11 +1,9 @@
 package com.flinics.history.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.flinics.history.Volley;
 import com.flinics.history.data.model.LoggedInUser;
 
 import org.json.JSONException;
@@ -24,7 +22,7 @@ public class LoginDataSource {
 
         try {
             // TODO: handle loggedInUser authentication
-            Log.d("REST", "Login...");
+            // Log.d("REST", "Login...");
             JSONObject body = new JSONObject();
             body.put("email", username);
             body.put("password", password);
@@ -47,7 +45,7 @@ public class LoginDataSource {
     private Response.ErrorListener errorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e(classTag, error.toString());
+            // Log.e(classTag, error.toString());
         }
     };
 }

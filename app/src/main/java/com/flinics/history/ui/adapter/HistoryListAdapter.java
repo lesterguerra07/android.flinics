@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,7 +149,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     private Response.Listener<JSONObject> successDeleteDataListener = new Response.Listener<JSONObject>() {
         @Override
         public void onResponse(JSONObject response) {
-            Log.d("MainActivity", response.toString());
+            // Log.d("MainActivity", response.toString());
             notifyDataSetChanged();
             Toast.makeText(_context, "Historia eliminada exitosamente!", Toast.LENGTH_SHORT).show();
         }
@@ -159,7 +158,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     private Response.ErrorListener errorDeleteDataListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("WizardActivity", error.toString());
+            // Log.e("WizardActivity", error.toString());
         }
     };
 

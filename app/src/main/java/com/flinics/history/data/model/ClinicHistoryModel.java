@@ -1,7 +1,5 @@
 package com.flinics.history.data.model;
 
-import android.util.Log;
-
 import com.flinics.history.utils.HistoryUtil;
 
 import org.json.JSONArray;
@@ -282,7 +280,7 @@ public class ClinicHistoryModel {
         try {
             JSONObject jsonObject = new JSONObject();
             for (Map.Entry<String , ArrayList<FieldModel>> entry : _ClinicHistory.entrySet()) {
-                Log.d("DATA","key=" + entry.getKey() + ", value=" + entry.getValue());
+                // Log.d("DATA","key=" + entry.getKey() + ", value=" + entry.getValue());
                 JSONArray jsonArray = new JSONArray();
                 for (FieldModel field : entry.getValue()){
 
@@ -345,7 +343,7 @@ public class ClinicHistoryModel {
         fieldsModel.get(0).value = value;
     }
 
-    public class FieldModel{
+    public static class FieldModel{
         public String _id;
         public int version;
         public String value;

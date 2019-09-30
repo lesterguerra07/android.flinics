@@ -3,7 +3,6 @@ package com.flinics.history;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -47,7 +46,7 @@ public class VolleyQueueConfig {
             certificateFactory = CertificateFactory.getInstance("X.509");
         } catch (final CertificateException exception) {
             final String errorMessage = "Failed to get an instance of the CertificateFactory.";
-            Log.e(TAG, errorMessage, exception);
+            // Log.e(TAG, errorMessage, exception);
 
             return;
         }
@@ -60,7 +59,7 @@ public class VolleyQueueConfig {
                 certificate = certificateFactory.generateCertificate(certificateInputStream);
             } catch (final IOException | CertificateException exception) {
                 final String errorMessage = "Failed to retrieve the Certificate.";
-                Log.e(TAG, errorMessage, exception);
+                // Log.e(TAG, errorMessage, exception);
 
                 return;
             }
@@ -74,7 +73,7 @@ public class VolleyQueueConfig {
             keyStore = buildKeyStore(certificates);
         } catch (final KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException exception) {
             final String errorMessage = "Failed to build the KeyStore with the Certificate.";
-            Log.e(TAG, errorMessage, exception);
+            // Log.e(TAG, errorMessage, exception);
 
             return;
         }
@@ -84,7 +83,7 @@ public class VolleyQueueConfig {
             trustManagerFactory = buildTrustManager(keyStore);
         } catch (final KeyStoreException | NoSuchAlgorithmException exception) {
             final String errorMessage = "Failed to build the TrustManagerFactory with the KeyStore.";
-            Log.e(TAG, errorMessage, exception);
+            // Log.e(TAG, errorMessage, exception);
 
             return;
         }
@@ -94,7 +93,7 @@ public class VolleyQueueConfig {
             sslContext = buildSSLContext(trustManagerFactory);
         } catch (final KeyManagementException | NoSuchAlgorithmException exception) {
             final String errorMessage = "Failed to build the SSLContext with the TrustManagerFactory.";
-            Log.e(TAG, errorMessage, exception);
+            // Log.e(TAG, errorMessage, exception);
 
             return;
         }

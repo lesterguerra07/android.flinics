@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class WizardActivity extends AppCompatActivity {
     private Context context;
@@ -37,6 +37,7 @@ public class WizardActivity extends AppCompatActivity {
     ViewPager viewPager;
     SectionsPagerAdapter sectionsPagerAdapter;
     private WizardViewModel _wizardViewModel;
+    private ClinicHistoryModel _originalData;
 
     private String _accessToken;
     private String _historyId;
@@ -91,9 +92,13 @@ public class WizardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    sendData();
+                    if(_historyId != null && _historyId != ""){
+                        putData();
+                    } else {
+                        postData();
+                    }
                 } catch (Exception exception) {
-                    Log.e("WizardActivity", "Error sending data", exception);
+                    // Log.e("WizardActivity", "Error sending data", exception);
                 }
             }
         });
@@ -119,15 +124,49 @@ public class WizardActivity extends AppCompatActivity {
         }
     }
 
-    private void sendData() {
+    private void postData() {
         ClinicHistoryModel data = _wizardViewModel.getClinicHistory();
         Volley.postData(this, data.toJSONObject(), successSendDataListener, errorSendDataListener, "1", "history", "", _accessToken);
     }
 
+    private void putData() {
+        ClinicHistoryModel data = _wizardViewModel.getClinicHistory();
+        HashMap<String, ArrayList<ClinicHistoryModel.FieldModel>> newData = data.getClinicHistory();
+        HashMap<String, ArrayList<ClinicHistoryModel.FieldModel>> originalData = _originalData.getClinicHistory();
+        for(Map.Entry<String, ArrayList<ClinicHistoryModel.FieldModel>> item : _originalData.getClinicHistory().entrySet()){
+            String key = item.getKey();
+            ArrayList<ClinicHistoryModel.FieldModel> newInfo = newData.get(key);
+            ArrayList<ClinicHistoryModel.FieldModel> originalInfo = originalData.get(key);
+            String originalValue = originalInfo.get(originalInfo.size()-1).value;
+            String newValue = newInfo.get(0).value;
+            if(!newValue.equals(originalValue)){
+                _originalData.setNewData(key, newInfo.get(0).value);
+            }
+        }
+        Volley.putData(this, _originalData.toJSONObject(), successPutDataListener, errorPutDataListener, "1", "history", _historyId, _accessToken);
+    }
+
+    private Response.Listener<JSONObject> successPutDataListener = new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            // Log.d("WizardActivity", response.toString());
+            Toast.makeText(context, "Historia rectificada exitosamente!", Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
+    };
+
+    private Response.ErrorListener errorPutDataListener = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            // Log.e("WizardActivity", error.toString());
+        }
+    };
+
     private Response.Listener<JSONObject> successSendDataListener = new Response.Listener<JSONObject>() {
         @Override
         public void onResponse(JSONObject response) {
-            Log.d("WizardActivity", response.toString());
+            // Log.d("WizardActivity", response.toString());
             Toast.makeText(context, "Historia creada exitosamente!", Toast.LENGTH_SHORT).show();
             finish();
 
@@ -137,7 +176,7 @@ public class WizardActivity extends AppCompatActivity {
     private Response.ErrorListener errorSendDataListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("WizardActivity", error.toString());
+            // Log.e("WizardActivity", error.toString());
         }
     };
 
@@ -149,9 +188,17 @@ public class WizardActivity extends AppCompatActivity {
     private Response.Listener<JSONObject> successGetDataListener = new Response.Listener<JSONObject>() {
         @Override
         public void onResponse(JSONObject response) {
-            Log.d("WizardActivity", response.toString());
+            // Log.d("WizardActivity", response.toString());
             HashMap<String, ArrayList<ClinicHistoryModel.FieldModel>> clinicHistory = new Gson().fromJson(response.toString(), new TypeToken<HashMap<String, ArrayList<ClinicHistoryModel.FieldModel>>>(){}.getType());
             _wizardViewModel.setClinicHistory(new ClinicHistoryModel(clinicHistory));
+            _originalData = new ClinicHistoryModel((HashMap<String, ArrayList<ClinicHistoryModel.FieldModel>>)clinicHistory.clone());
+            for(Map.Entry<String, ArrayList<ClinicHistoryModel.FieldModel>> originalArray : _originalData.getClinicHistory().entrySet()){
+                ArrayList<ClinicHistoryModel.FieldModel> originalArrayCopy = new ArrayList<>();
+                for(ClinicHistoryModel.FieldModel originalField : originalArray.getValue()){
+                    originalArrayCopy.add(new ClinicHistoryModel.FieldModel(originalField.value, originalField.version));
+                }
+                _originalData.getClinicHistory().put(originalArray.getKey(), originalArrayCopy);
+            }
             iniFragment();
         }
     };
@@ -159,7 +206,7 @@ public class WizardActivity extends AppCompatActivity {
     private Response.ErrorListener errorGetDataListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("WizardActivity", error.toString());
+            // Log.e("WizardActivity", error.toString());
         }
     };
 

@@ -2,7 +2,6 @@ package com.flinics.history;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onResponse(JSONObject response) {
             try {
-                Log.d("MainActivity", response.toString());
+                // Log.d("MainActivity", response.toString());
                 HashMap<String, ArrayList<HashMap>> historyData = new Gson().fromJson(response.toString(), new TypeToken<HashMap<String, ArrayList<HashMap>>>(){}.getType());
                 ArrayList<HashMap> historyList = historyData.get("histories");
                 if (historyList != null){
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     listAdapter.notifyDataSetChanged();
                 }
             } catch (Exception e){
-                Log.e("MainActivity", e.getStackTrace().toString());
+                // Log.e("MainActivity", e.getStackTrace().toString());
             }
         }
     };
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private Response.ErrorListener errorGetDataListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("WizardActivity", error.toString());
+            // Log.e("WizardActivity", error.toString());
         }
     };
 

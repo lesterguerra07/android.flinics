@@ -1,7 +1,6 @@
 package com.flinics.history;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -22,6 +21,7 @@ import java.util.Map;
 import static com.android.volley.Request.Method.DELETE;
 import static com.android.volley.Request.Method.GET;
 import static com.android.volley.Request.Method.POST;
+import static com.android.volley.Request.Method.PUT;
 import static com.flinics.history.VolleyQueueConfig.getRequestQueue;
 
 public class Volley {
@@ -36,7 +36,7 @@ public class Volley {
                                 final String token
     ) {
 
-        Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+        // Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
         final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
 
         final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(GET,
@@ -58,12 +58,12 @@ public class Volley {
         try {
             it = jsonObjectRequest.getHeaders().entrySet().iterator();
         } catch (AuthFailureError authFailureError) {
-            Log.d("Headers", authFailureError.getMessage());
+            // Log.d("Headers", authFailureError.getMessage());
         }
 
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            Log.d("Headers", pair.getKey() + ":" + pair.getValue());
+            // Log.d("Headers", pair.getKey() + ":" + pair.getValue());
         }
 
 
@@ -81,7 +81,7 @@ public class Volley {
                                 final String token
                                 ) {
 
-        Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+        // Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
         final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
 
         final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(POST,
@@ -103,12 +103,12 @@ public class Volley {
         try {
             it = jsonObjectRequest.getHeaders().entrySet().iterator();
         } catch (AuthFailureError authFailureError) {
-            Log.d("Headers", authFailureError.getMessage());
+            // Log.d("Headers", authFailureError.getMessage());
         }
 
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            Log.d("Headers", pair.getKey() + ":" + pair.getValue());
+            // Log.d("Headers", pair.getKey() + ":" + pair.getValue());
         }
 
 
@@ -126,7 +126,7 @@ public class Volley {
                                 final String token
     ) {
 
-        Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+        // Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
         final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
 
         final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(DELETE,
@@ -148,12 +148,57 @@ public class Volley {
         try {
             it = jsonObjectRequest.getHeaders().entrySet().iterator();
         } catch (AuthFailureError authFailureError) {
-            Log.d("Headers", authFailureError.getMessage());
+            // Log.d("Headers", authFailureError.getMessage());
         }
 
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            Log.d("Headers", pair.getKey() + ":" + pair.getValue());
+            // Log.d("Headers", pair.getKey() + ":" + pair.getValue());
+        }
+
+
+        final RequestQueue queue = getRequestQueue(context);
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void putData(final Context context,
+                               final JSONObject bodyRequestJsonObject,
+                               final Listener<JSONObject> successListener,
+                               final ErrorListener errorListener,
+                               final String apiVersion,
+                               final String apiMethod,
+                               final String apiParam,
+                               final String token
+    ) {
+
+        // Log.d("REST", String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+        final URI uri = URI.create(String.format("https://api.flinics.brickapps.com/v%1$s/%2$s/%3$s", apiVersion, apiMethod, apiParam));
+
+        final CustomJsonObjectRequest jsonObjectRequest = new CustomJsonObjectRequest(PUT,
+                uri.toString(),
+                bodyRequestJsonObject,
+                successListener,
+                errorListener,
+                token);
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        );
+
+        jsonObjectRequest.setRetryPolicy(retryPolicy);
+
+        Iterator it = null;
+        try {
+            it = jsonObjectRequest.getHeaders().entrySet().iterator();
+        } catch (AuthFailureError authFailureError) {
+            // Log.d("Headers", authFailureError.getMessage());
+        }
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            // Log.d("Headers", pair.getKey() + ":" + pair.getValue());
         }
 
 
